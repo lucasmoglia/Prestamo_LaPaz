@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 16, 2014 12:39:12 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="prestamo.Modelo.Persona" table="persona" schema="prestamo">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" />
+        </property>
+        <property name="idTipoDocumento" type="java.lang.Integer">
+            <column name="id_tipo_documento" />
+        </property>
+        <property name="nroDocumento" type="string">
+            <column name="nro_documento" />
+        </property>
+    </class>
+</hibernate-mapping>
