@@ -28,6 +28,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlAdministracionCliente = new javax.swing.JPanel();
         pnlTituloAdministracionCliente = new javax.swing.JPanel();
         lblTituloNuevoCliente = new javax.swing.JLabel();
         pnlNuevoCliente = new javax.swing.JPanel();
@@ -76,29 +77,19 @@ public class NuevoCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
+
+        pnlAdministracionCliente.setPreferredSize(new java.awt.Dimension(897, 558));
 
         pnlTituloAdministracionCliente.setBackground(java.awt.Color.black);
 
         lblTituloNuevoCliente.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         lblTituloNuevoCliente.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloNuevoCliente.setText("Nuevo cliente");
-
-        javax.swing.GroupLayout pnlTituloAdministracionClienteLayout = new javax.swing.GroupLayout(pnlTituloAdministracionCliente);
-        pnlTituloAdministracionCliente.setLayout(pnlTituloAdministracionClienteLayout);
-        pnlTituloAdministracionClienteLayout.setHorizontalGroup(
-            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(lblTituloNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlTituloAdministracionClienteLayout.setVerticalGroup(
-            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTituloNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         pnlNuevoCliente.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -248,7 +239,7 @@ public class NuevoCliente extends javax.swing.JFrame {
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
@@ -296,7 +287,7 @@ public class NuevoCliente extends javax.swing.JFrame {
                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDatosPersonales)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -375,23 +366,62 @@ public class NuevoCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        javax.swing.GroupLayout pnlTituloAdministracionClienteLayout = new javax.swing.GroupLayout(pnlTituloAdministracionCliente);
+        pnlTituloAdministracionCliente.setLayout(pnlTituloAdministracionClienteLayout);
+        pnlTituloAdministracionClienteLayout.setHorizontalGroup(
+            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlNuevoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlTituloAdministracionClienteLayout.setVerticalGroup(
+            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlAdministracionClienteLayout = new javax.swing.GroupLayout(pnlAdministracionCliente);
+        pnlAdministracionCliente.setLayout(pnlAdministracionClienteLayout);
+        pnlAdministracionClienteLayout.setHorizontalGroup(
+            pnlAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlAdministracionClienteLayout.setVerticalGroup(
+            pnlAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdministracionClienteLayout.createSequentialGroup()
+                .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnlAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnlAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -460,8 +490,9 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblTituloNuevoCliente;
     private javax.swing.JList lstOtroscontactos;
-    private javax.swing.JPanel pnlNuevoCliente;
-    private javax.swing.JPanel pnlTituloAdministracionCliente;
+    public javax.swing.JPanel pnlAdministracionCliente;
+    public javax.swing.JPanel pnlNuevoCliente;
+    public javax.swing.JPanel pnlTituloAdministracionCliente;
     private javax.swing.JTextField txtApellidoCliente;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JTextField txtCodigoPostal;

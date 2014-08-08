@@ -5,7 +5,9 @@
  */
 
 package prestamo.Formularios;
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 /**
  *
  * @author L0395118
@@ -28,39 +30,16 @@ public class AdministracionCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlTituloAdministracionCliente = new javax.swing.JPanel();
-        lblTituloAdminCliente = new javax.swing.JLabel();
         pnlAdministracionClienteForm = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtClientes = new javax.swing.JTable();
         btnNuevoCliente = new javax.swing.JButton();
         lblCliente = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        pnlTituloAdministracionCliente = new javax.swing.JPanel();
+        lblTituloAdminCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        pnlTituloAdministracionCliente.setBackground(java.awt.Color.black);
-
-        lblTituloAdminCliente.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        lblTituloAdminCliente.setForeground(new java.awt.Color(255, 255, 255));
-        lblTituloAdminCliente.setText("Administración de clientes");
-
-        javax.swing.GroupLayout pnlTituloAdministracionClienteLayout = new javax.swing.GroupLayout(pnlTituloAdministracionCliente);
-        pnlTituloAdministracionCliente.setLayout(pnlTituloAdministracionClienteLayout);
-        pnlTituloAdministracionClienteLayout.setHorizontalGroup(
-            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(lblTituloAdminCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlTituloAdministracionClienteLayout.setVerticalGroup(
-            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTituloAdminCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         pnlAdministracionClienteForm.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -82,6 +61,29 @@ public class AdministracionCliente extends javax.swing.JFrame {
         lblCliente.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         lblCliente.setText("Clientes");
 
+        pnlTituloAdministracionCliente.setBackground(java.awt.Color.black);
+
+        lblTituloAdminCliente.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        lblTituloAdminCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloAdminCliente.setText("Administración de clientes");
+
+        javax.swing.GroupLayout pnlTituloAdministracionClienteLayout = new javax.swing.GroupLayout(pnlTituloAdministracionCliente);
+        pnlTituloAdministracionCliente.setLayout(pnlTituloAdministracionClienteLayout);
+        pnlTituloAdministracionClienteLayout.setHorizontalGroup(
+            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloAdminCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlTituloAdministracionClienteLayout.setVerticalGroup(
+            pnlTituloAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloAdministracionClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloAdminCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout pnlAdministracionClienteFormLayout = new javax.swing.GroupLayout(pnlAdministracionClienteForm);
         pnlAdministracionClienteForm.setLayout(pnlAdministracionClienteFormLayout);
         pnlAdministracionClienteFormLayout.setHorizontalGroup(
@@ -89,7 +91,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
             .addGroup(pnlAdministracionClienteFormLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAdministracionClienteFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
                     .addGroup(pnlAdministracionClienteFormLayout.createSequentialGroup()
                         .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -98,17 +100,19 @@ public class AdministracionCliente extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnNuevoCliente)))
                 .addContainerGap())
+            .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlAdministracionClienteFormLayout.setVerticalGroup(
             pnlAdministracionClienteFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdministracionClienteFormLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addComponent(lblCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(btnNuevoCliente)
                 .addContainerGap())
         );
@@ -117,15 +121,13 @@ public class AdministracionCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlAdministracionClienteForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlAdministracionClienteForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(pnlAdministracionClienteForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,7 +175,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
     private javax.swing.JTable jtClientes;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblTituloAdminCliente;
-    private javax.swing.JPanel pnlAdministracionClienteForm;
+    public javax.swing.JPanel pnlAdministracionClienteForm;
     private javax.swing.JPanel pnlTituloAdministracionCliente;
     // End of variables declaration//GEN-END:variables
 }
