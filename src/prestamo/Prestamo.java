@@ -6,13 +6,11 @@
 
 package prestamo;
 
-import org.hibernate.Hibernate;
-import org.hibernate.ejb.HibernateEntityManagerFactory;
-import prestamo.Formularios.AdministracionCliente;
+import prestamo.Formularios.MainCliente;
 
 /**
  *
- * @author L0395118
+ * @author Cesar Acarapi
  */
 public class Prestamo {
 
@@ -20,7 +18,7 @@ public class Prestamo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AdministracionCliente.main(args);
+        MainCliente.main(args);
         /*Cliente c = new Cliente();
         c.setId(1);
         c.setApellido("Acarapi");
