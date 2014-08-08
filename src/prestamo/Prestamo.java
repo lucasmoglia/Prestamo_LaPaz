@@ -6,9 +6,11 @@
 
 package prestamo;
 
+import prestamo.Formularios.MainCliente;
+
 /**
  *
- * @author cacarapi
+ * @author Cesar Acarapi
  */
 public class Prestamo {
 
@@ -16,7 +18,11 @@ public class Prestamo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MainCliente.main(args);
+        /*Cliente c = new Cliente();
+        c.setId(1);
+        c.setApellido("Acarapi");
+        
+        System.out.println(c.getApellido());*/
     }
-    
 }
