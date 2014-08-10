@@ -74,6 +74,8 @@ public class NuevoCliente extends javax.swing.JFrame {
         btnAgregarCliente = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         txtNacionalidad = new javax.swing.JTextField();
+        ddlTipodocumento = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -98,7 +100,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         lblApellidoCliente.setText("Apellido");
         lblApellidoCliente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel1.setText("DNI");
+        jLabel1.setText("Tipo de Documento");
 
         jLabel2.setText("Fecha de nacimiento");
 
@@ -178,6 +180,8 @@ public class NuevoCliente extends javax.swing.JFrame {
 
         jLabel16.setText("Nacionalidad");
 
+        jLabel17.setText("Nro");
+
         javax.swing.GroupLayout pnlNuevoClienteLayout = new javax.swing.GroupLayout(pnlNuevoCliente);
         pnlNuevoCliente.setLayout(pnlNuevoClienteLayout);
         pnlNuevoClienteLayout.setHorizontalGroup(
@@ -204,9 +208,10 @@ public class NuevoCliente extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlNuevoClienteLayout.createSequentialGroup()
                                             .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
@@ -217,29 +222,37 @@ public class NuevoCliente extends javax.swing.JFrame {
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ddlDiaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ddlMesNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ddlAnioNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtApellidoCliente)
-                                    .addComponent(txtDocCliente)
                                     .addComponent(txtDomicilio)
                                     .addComponent(txtCodigoPostal)
                                     .addComponent(txtNombreCliente)
-                                    .addComponent(txtNacionalidad))))
+                                    .addComponent(txtNacionalidad)
+                                    .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
+                                                .addComponent(ddlTipodocumento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(ddlDiaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel4)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDocCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
+                                                .addComponent(ddlMesNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel5)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(ddlAnioNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(57, 57, 57)
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
                                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
@@ -322,7 +335,9 @@ public class NuevoCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDocCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                            .addComponent(jLabel1)
+                            .addComponent(ddlTipodocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))))
                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -396,7 +411,7 @@ public class NuevoCliente extends javax.swing.JFrame {
             pnlAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdministracionClienteLayout.createSequentialGroup()
                 .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -465,6 +480,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JComboBox ddlAnioNacimiento;
     private javax.swing.JComboBox ddlDiaNacimiento;
     private javax.swing.JComboBox ddlMesNacimiento;
+    private javax.swing.JComboBox ddlTipodocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -473,6 +489,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
