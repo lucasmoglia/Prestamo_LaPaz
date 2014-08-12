@@ -7,6 +7,7 @@
 package prestamo;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  *
@@ -24,10 +25,11 @@ public class Math {
     private BigDecimal t1 = cero; // Primera Cuota de amortización
     private BigDecimal tp = cero; // Cuota de amortización en Periodo indicado
     private BigDecimal tap = cero; // Total Amortizado en Período indicado
+    private BigDecimal ipp = cero; // Intereses cpbrados primer período
     
     
     public Math(BigDecimal i, BigDecimal v, BigDecimal n){
-        this.i = i;
+        this.i = i.divide(new BigDecimal("12"));
         this.v = v;
         this.n = n;
     }
@@ -60,20 +62,6 @@ public class Math {
     }
 
     /**
-     * @return the c
-     */
-    public BigDecimal getCuota() {
-        return c;
-    }
-
-    /**
-     * @param c the c to set
-     */
-    public void setCuota(BigDecimal c) {
-        this.c = c;
-    }
-
-    /**
      * @return the n
      */
     public BigDecimal getPeriodos() {
@@ -99,7 +87,19 @@ public class Math {
         return tp;
     }
     
-    /*public BigDecimal GetTotalAmortizado(BigDecimal p){
-        //tap = t1.multiply(uno)
-    }*/
+    public BigDecimal GetTotalAmortizado(BigDecimal p){
+        t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
+        tap = t1.multiply((uno.add(i).pow(Integer.parseInt(n.toString()))).divide(i));
+        return tap;
+    }
+
+    public BigDecimal getCuota() {
+        c = (v.multiply((uno.add(i).pow(Integer.parseInt(n.toString()))).multiply(i))).divide((uno.add(i).pow(Integer.parseInt(n.toString()))).subtract(uno));
+        return c;
+    }
+    
+    public BigDecimal GetInteresPrimerPeriodo(){
+        ipp = v.multiply(i);
+        return ipp;
+    }
 }
