@@ -13,7 +13,7 @@ import java.math.BigInteger;
  *
  * @author cacarapi
  */
-public class Math {
+public final class Math {
     private final BigDecimal uno = new BigDecimal("1");  // Constante 1 
     private final BigDecimal cero = new BigDecimal("0");  // Constante 1 
     
@@ -26,24 +26,26 @@ public class Math {
     private BigDecimal tp = cero; // Cuota de amortización en Periodo indicado
     private BigDecimal tap = cero; // Total Amortizado en Período indicado
     private BigDecimal ipp = cero; // Intereses cpbrados primer período
+    private BigDecimal ip = cero; // Interes expresado en porcentaje
     
     
     public Math(BigDecimal i, BigDecimal v, BigDecimal n){
-        this.i = i.divide(new BigDecimal("12"));
+        this.i = i;
         this.v = v;
         this.n = n;
+        this.ip = GetInteresPorcentaje();
     }
     /**
      * @return the i
      */
-    public BigDecimal getInteres() {
+    public BigDecimal getInteresTaza() {
         return i;
     }
 
     /**
      * @param i the i to set
      */
-    public void setInteres(BigDecimal i) {
+    public void setInteresTaza(BigDecimal i) {
         this.i = i;
     }
 
@@ -77,29 +79,35 @@ public class Math {
     }
     
     public BigDecimal GetPrimeraCuotaAmortizada(){
-        t1 = c.subtract(v.multiply(i));
+        c = c.equals(cero) ? GetCuota() : c;
+        t1 = c.subtract(v.multiply(ip));
         return t1;
     }
     
     public BigDecimal GetCuotaAmortizadaPeriodo(BigDecimal p){
         t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
-        tp = t1.multiply((uno.add(i)).pow(Integer.parseInt(p.subtract(uno).toString())));
+        tp = t1.multiply((uno.add(ip)).pow(Integer.parseInt(p.subtract(uno).toString())));
         return tp;
     }
     
     public BigDecimal GetTotalAmortizado(BigDecimal p){
         t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
-        tap = t1.multiply((uno.add(i).pow(Integer.parseInt(n.toString()))).divide(i));
+        tap = t1.multiply((uno.add(ip).pow(Integer.parseInt(n.toString()))).divide(ip,3,BigDecimal.ROUND_HALF_UP));
         return tap;
     }
 
-    public BigDecimal getCuota() {
-        c = (v.multiply((uno.add(i).pow(Integer.parseInt(n.toString()))).multiply(i))).divide((uno.add(i).pow(Integer.parseInt(n.toString()))).subtract(uno));
+    public BigDecimal GetCuota() {
+        c = (v.multiply((uno.add(ip).pow(Integer.parseInt(n.toString()))).multiply(ip))).divide((uno.add(ip).pow(Integer.parseInt(n.toString()))).subtract(uno), 3, BigDecimal.ROUND_HALF_UP);
         return c;
     }
     
     public BigDecimal GetInteresPrimerPeriodo(){
-        ipp = v.multiply(i);
+        ipp = v.multiply(ip);
         return ipp;
+    }
+    
+    public BigDecimal GetInteresPorcentaje(){
+        ip = i.divide(new BigDecimal("10"), 3, BigDecimal.ROUND_HALF_UP).divide(new BigDecimal("12"), 3, BigDecimal.ROUND_HALF_UP);
+        return ip;
     }
 }
