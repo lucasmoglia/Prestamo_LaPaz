@@ -8,6 +8,7 @@ package prestamo;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 
 /**
  *
@@ -77,7 +78,7 @@ public final class Math {
         this.n = n;
 
     }
-    
+     
     public BigDecimal GetPrimeraCuotaAmortizada(){
         c = c.equals(cero) ? GetCuota() : c;
         t1 = c.subtract(v.multiply(ip));
@@ -92,7 +93,7 @@ public final class Math {
     
     public BigDecimal GetTotalAmortizado(BigDecimal p){
         t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
-        tap = t1.multiply((uno.add(ip).pow(Integer.parseInt(n.toString()))).divide(ip,3,BigDecimal.ROUND_HALF_UP));
+        tap = t1.multiply((uno.add(ip).pow(Integer.parseInt(p.toString()))).subtract(uno)).divide(ip,3,BigDecimal.ROUND_HALF_UP);
         return tap;
     }
 
@@ -107,7 +108,7 @@ public final class Math {
     }
     
     public BigDecimal GetInteresPorcentaje(){
-        ip = i.divide(new BigDecimal("10"), 3, BigDecimal.ROUND_HALF_UP).divide(new BigDecimal("12"), 3, BigDecimal.ROUND_HALF_UP);
+        ip = i.divide(new BigDecimal("100"), 3, BigDecimal.ROUND_HALF_UP).divide(new BigDecimal("12"), 4, BigDecimal.ROUND_HALF_UP);
         return ip;
     }
 }
