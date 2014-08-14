@@ -25,6 +25,11 @@ public class Cuota  implements java.io.Serializable {
      private Prestamo prestamo;
      private Integer numeroCuota;
      private BigDecimal monto;
+     private BigDecimal saldoInicial;
+     private BigDecimal interesPeriodo;
+     private BigDecimal amortizacion;
+     private BigDecimal totalAmortizado;
+     
 
     public Cuota() {
     }
@@ -80,5 +85,53 @@ public class Cuota  implements java.io.Serializable {
     
     public void setMonto(BigDecimal monto) {
         this.monto = monto;
+    }
+
+    @Column(name="saldo_inicial", precision=131089, scale=0)
+    public BigDecimal getSaldoInicial() {
+        return saldoInicial;
+    }
+
+    /**
+     * @param saldoInicial the saldoInicial to set
+     */
+    public void setSaldoInicial(BigDecimal saldoInicial) {
+        this.saldoInicial = saldoInicial;
+    }
+
+    @Column(name="interes_periodo", precision=131089, scale=0)
+    public BigDecimal getInteresPeriodo() {
+        return interesPeriodo;
+    }
+
+    /**
+     * @param interesPeriodo the interesPeriodo to set
+     */
+    public void setInteresPeriodo(BigDecimal interesPeriodo) {
+        this.interesPeriodo = interesPeriodo;
+    }
+
+    @Column(name="amortizacion", precision=131089, scale=0)
+    public BigDecimal getAmortizacion() {
+        return amortizacion;
+    }
+
+    /**
+     * @param amortizacion the amortización to set
+     */
+    public void setAmortizacion(BigDecimal amortizacion) {
+        this.amortizacion = amortizacion;
+    }
+
+    @Column(name="total_amortizado", precision=131089, scale=0)
+    public BigDecimal getTotalAmortizado() {
+        return totalAmortizado;
+    }
+
+    /**
+     * @param totalAmortizado the totalAmortizado to set
+     */
+    public void setTotalAmortizado(BigDecimal totalAmortizado) {
+        this.totalAmortizado = totalAmortizado;
     }
 }

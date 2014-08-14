@@ -16,7 +16,7 @@ import java.math.MathContext;
  */
 public final class Math {
     private final BigDecimal uno = new BigDecimal("1");  // Constante 1 
-    private final BigDecimal cero = new BigDecimal("0");  // Constante 1 
+    private final BigDecimal cero = new BigDecimal("0");  // Constante 0
     
     private BigDecimal i;  // Taza de interes
     private BigDecimal v;  // Capital tomado en prestamo
@@ -28,7 +28,7 @@ public final class Math {
     private BigDecimal tap = cero; // Total Amortizado en Período indicado
     private BigDecimal ipp = cero; // Intereses cpbrados primer período
     private BigDecimal ip = cero; // Interes expresado en porcentaje
-    
+    private BigDecimal ipi = cero; // Interes en periodos intermedios
     
     public Math(BigDecimal i, BigDecimal v, BigDecimal n){
         this.i = i;
@@ -110,5 +110,12 @@ public final class Math {
     public BigDecimal GetInteresPorcentaje(){
         ip = i.divide(new BigDecimal("100"), 3, BigDecimal.ROUND_HALF_UP).divide(new BigDecimal("12"), 4, BigDecimal.ROUND_HALF_UP);
         return ip;
+    }
+    
+    public BigDecimal GetInteresPeriodosIntermedios(BigDecimal periodo){
+        t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
+        BigDecimal p = periodo.subtract(uno);
+        ipi = (v.subtract(t1.multiply((uno.add(ip).pow(Integer.parseInt(p.toString()))).subtract(uno)).divide(ip, 3, BigDecimal.ROUND_HALF_UP))).multiply(ip);
+        return ipi;
     }
 }
