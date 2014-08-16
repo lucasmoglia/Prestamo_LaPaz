@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/sistema</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">admin</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
+    <mapping class="prestamo.Modelo.Persona"/>
+    <mapping class="prestamo.Modelo.Cliente"/>
+    <mapping class="prestamo.Modelo.TipoDocumento"/>
+    <mapping class="prestamo.Modelo.Provincia"/>
+    <mapping class="prestamo.Modelo.Departamento"/>
+    <mapping class="prestamo.Modelo.Localidad"/>
+    <mapping class="prestamo.Modelo.Direccion"/>
+    <mapping class="prestamo.Modelo.Garante"/>
+    <mapping class="prestamo.Modelo.Conocido"/>
+    <mapping class="prestamo.Modelo.Cuota"/>
+    <mapping class="prestamo.Modelo.Prestamo"/>
+  </session-factory>
+</hibernate-configuration>
