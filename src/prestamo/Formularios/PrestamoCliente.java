@@ -6,17 +6,20 @@
 
 package prestamo.Formularios;
 
+import java.math.BigDecimal;
+import prestamo.Colaboradores.PrestamoClienteColaborador;
+
 /**
  *
  * @author R2D2
  */
 public class PrestamoCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PrestamoCliente
-     */
+    private PrestamoClienteColaborador colaborador;
+    
     public PrestamoCliente() {
         initComponents();
+        jtCuotas.setVisible(false);
     }
 
     /**
@@ -39,7 +42,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
         txtTasaInteres = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtCuotas = new javax.swing.JTable();
         btnCalcularCuotas = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -63,7 +66,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
         jLabel6.setText("%");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtCuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -74,7 +77,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtCuotas);
 
         btnCalcularCuotas.setText("Calcular");
         btnCalcularCuotas.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +106,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -181,7 +184,13 @@ public class PrestamoCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularCuotasActionPerformed
-        // TODO add your handling code here:
+        colaborador = new PrestamoClienteColaborador();        
+        prestamo.Math math = colaborador.getMath();
+        math.setInteresTaza(new BigDecimal(this.txtTasaInteres.getText()));
+        math.setValorActual(new BigDecimal(this.txtMontoPrestamo.getText()));
+        math.setPeriodos(new BigDecimal(ddlCuotas.getSelectedItem().toString()));
+        jtCuotas.setVisible(true);
+        jtCuotas.setModel(colaborador.getModel());        
     }//GEN-LAST:event_btnCalcularCuotasActionPerformed
 
     /**
@@ -213,6 +222,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new PrestamoCliente().setVisible(true);
             }
@@ -231,7 +241,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtCuotas;
     public javax.swing.JPanel pnlPrestamoCliente;
     private javax.swing.JTextField txtMontoPrestamo;
     private javax.swing.JTextField txtTasaInteres;

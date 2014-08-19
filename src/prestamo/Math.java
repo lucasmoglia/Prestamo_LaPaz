@@ -6,13 +6,9 @@
 
 package prestamo;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
-
-/**
+import java.math.BigDecimal;/**
  *
- * @author cacarapi
+ * @author cesar acarapi
  */
 public final class Math {
     private final BigDecimal uno = new BigDecimal("1");  // Constante 1 
@@ -35,6 +31,12 @@ public final class Math {
         this.v = v;
         this.n = n;
         this.ip = GetInteresPorcentaje();
+    }
+
+    public Math() {
+        this.i = cero;
+        this.v = cero;
+        this.n = cero;
     }
     /**
      * @return the i
@@ -82,40 +84,54 @@ public final class Math {
     public BigDecimal GetPrimeraCuotaAmortizada(){
         c = c.equals(cero) ? GetCuota() : c;
         t1 = c.subtract(v.multiply(ip));
-        return t1;
+        return round(t1);
     }
     
     public BigDecimal GetCuotaAmortizadaPeriodo(BigDecimal p){
         t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
         tp = t1.multiply((uno.add(ip)).pow(Integer.parseInt(p.subtract(uno).toString())));
-        return tp;
+        return round(tp);
     }
     
     public BigDecimal GetTotalAmortizado(BigDecimal p){
         t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
         tap = t1.multiply((uno.add(ip).pow(Integer.parseInt(p.toString()))).subtract(uno)).divide(ip,3,BigDecimal.ROUND_HALF_UP);
-        return tap;
+        return round(tap);
     }
 
     public BigDecimal GetCuota() {
         c = (v.multiply((uno.add(ip).pow(Integer.parseInt(n.toString()))).multiply(ip))).divide((uno.add(ip).pow(Integer.parseInt(n.toString()))).subtract(uno), 3, BigDecimal.ROUND_HALF_UP);
-        return c;
+        return round(c);
     }
     
     public BigDecimal GetInteresPrimerPeriodo(){
         ipp = v.multiply(ip);
-        return ipp;
+        return round(ipp);
     }
     
     public BigDecimal GetInteresPorcentaje(){
         ip = i.divide(new BigDecimal("100"), 3, BigDecimal.ROUND_HALF_UP).divide(new BigDecimal("12"), 4, BigDecimal.ROUND_HALF_UP);
-        return ip;
+        return round(ip);
     }
     
     public BigDecimal GetInteresPeriodosIntermedios(BigDecimal periodo){
         t1 = t1.equals(cero) ? GetPrimeraCuotaAmortizada() : t1;
         BigDecimal p = periodo.subtract(uno);
         ipi = (v.subtract(t1.multiply((uno.add(ip).pow(Integer.parseInt(p.toString()))).subtract(uno)).divide(ip, 3, BigDecimal.ROUND_HALF_UP))).multiply(ip);
-        return ipi;
+        return round(ipi);
+    }
+    
+    public BigDecimal GetSaldoInicialPeriodo(BigDecimal p){
+        int periodo = Integer.parseInt(p.toString());
+        if(periodo == 2)
+            return round(v.subtract(GetPrimeraCuotaAmortizada()));
+        else if (periodo > 2 )
+            return round(v.subtract(GetTotalAmortizado(p.subtract(uno))));
+        
+        return cero;
+    }
+    
+    private BigDecimal round(BigDecimal valor){
+        return valor.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 }
