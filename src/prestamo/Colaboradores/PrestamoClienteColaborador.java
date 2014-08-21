@@ -113,8 +113,4 @@ public class PrestamoClienteColaborador {
         model.addColumn("Interes ");
         model.addColumn("Total Amortizado");
     }
-    
-    public void resetCalculo(){
-        math = new prestamo.Math();
-    }
 }

@@ -8,6 +8,8 @@ package prestamo.Datos;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.transform.Source;
+import org.hibernate.HibernateException;
 import prestamo.Modelo.TipoDocumento;
 
 /**
@@ -20,11 +22,11 @@ public class TipoDocumentoHelper extends Helper{
     
     public TipoDocumentoHelper() {
         tipoDocumentoList = new ArrayList<>();
-    }
-    
-    public List<TipoDocumento> GetClienteById(int id){
-        String hql = "from TipoDocumento td where td.id = "+id;
+    }   
+
+    public List<TipoDocumento> GetAllDocumentos(){
+        String hql = "from TipoDocumento ";
         tipoDocumentoList = super.GetDataList(hql);
-        return tipoDocumentoList;        
+        return tipoDocumentoList;
     }
 }

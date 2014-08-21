@@ -6,6 +6,10 @@
 
 package prestamo.Formularios;
 
+import prestamo.Colaboradores.NuevoClienteColaborador;
+import prestamo.Modelo.Cliente;
+import prestamo.Modelo.Direccion;
+
 /**
  *
  * @author R2D2
@@ -15,8 +19,11 @@ public class NuevoCliente extends javax.swing.JFrame {
     /**
      * Creates new form NuevoCliente
      */
+    private NuevoClienteColaborador colaborador = new NuevoClienteColaborador();
+    
     public NuevoCliente() {
         initComponents();
+        setDatosIniciales();
     }
 
     /**
@@ -76,6 +83,8 @@ public class NuevoCliente extends javax.swing.JFrame {
         txtNacionalidad = new javax.swing.JTextField();
         ddlTipodocumento = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -114,12 +123,10 @@ public class NuevoCliente extends javax.swing.JFrame {
 
         jLabel5.setText("Año");
 
-        ddlAnioNacimiento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1990", "1991", "1992", "1993", "2004" }));
-
         lblDatosPersonales.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblDatosPersonales.setText("Datos personales");
 
-        jLabel6.setText("Domicilio");
+        jLabel6.setText("Calle");
 
         jLabel7.setText("Código Postal");
 
@@ -177,10 +184,17 @@ public class NuevoCliente extends javax.swing.JFrame {
         btnAgregarOtroCelular.setText("+");
 
         btnAgregarCliente.setText("Guardar");
+        btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Nacionalidad");
 
         jLabel17.setText("Nro");
+
+        jLabel18.setText("Nro");
 
         javax.swing.GroupLayout pnlNuevoClienteLayout = new javax.swing.GroupLayout(pnlNuevoCliente);
         pnlNuevoCliente.setLayout(pnlNuevoClienteLayout);
@@ -214,25 +228,16 @@ public class NuevoCliente extends javax.swing.JFrame {
                                                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtApellidoCliente)
-                                    .addComponent(txtDomicilio)
                                     .addComponent(txtCodigoPostal)
                                     .addComponent(txtNombreCliente)
                                     .addComponent(txtNacionalidad)
                                     .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
-                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                                                 .addComponent(ddlTipodocumento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                                                 .addComponent(jLabel3)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,7 +252,22 @@ public class NuevoCliente extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel5)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(ddlAnioNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                .addComponent(ddlAnioNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtDomicilio))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel18))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNumero)
+                                            .addComponent(txtPiso))))))
                         .addGap(57, 57, 57)
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
@@ -364,15 +384,22 @@ public class NuevoCliente extends javax.swing.JFrame {
                             .addComponent(ddlAnioNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel18)
+                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtPiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
+                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
+                                .addComponent(txtPiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
+                                .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))))
@@ -435,8 +462,12 @@ public class NuevoCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+        saveCliente();
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,6 +498,7 @@ public class NuevoCliente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new NuevoCliente().setVisible(true);
             }
@@ -490,6 +522,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -518,9 +551,46 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtDomicilio;
     private javax.swing.JTextField txtNacionalidad;
     private javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtNumero;
     private javax.swing.JFormattedTextField txtOtroCelular;
     private javax.swing.JFormattedTextField txtOtroTelefono;
     private javax.swing.JTextField txtPiso;
     private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void setDatosIniciales() {
+        colaborador = new NuevoClienteColaborador();
+        fillCombos();
+    }
+
+    private void fillCombos() {        
+        Commons.loadCombo(ddlTipodocumento, colaborador.getTiposDocumento());
+        Commons.loadCombo(ddlAnioNacimiento, colaborador.getAnios());
+    }
+
+    private void saveCliente() {
+        Cliente c = getClienteFormulario();
+        colaborador.Save(c);
+    }
+
+    private Cliente getClienteFormulario() {
+        Cliente c = new Cliente();
+        
+        // Datos generales del cliente
+        c.setNombre(txtNombreCliente.getText());
+        c.setApellido(txtApellidoCliente.getText());
+        c.setNacionalidad(txtNacionalidad.getText());
+        c.setTipoDocumento(colaborador.getTipoDocumentoById(((ComboItem)ddlTipodocumento.getSelectedItem()).getKey()));
+        c.setNumeroDocumento(Integer.parseInt(txtDocCliente.getText()));
+        c.setFechaNacimiento(colaborador.getDate(ddlDiaNacimiento.getSelectedItem().toString(), 
+                                                 ddlMesNacimiento.getSelectedItem().toString(), 
+                                                 ddlAnioNacimiento.getSelectedItem().toString()));
+        // Datos de Dirección
+        /*Direccion direccion = new Direccion();
+        direccion.setCalle(txtDomicilio.getText());
+        direccion.setNumero(Integer.parseInt(txtNumero.getText()));
+        direccion.setCodigoPostal(txtCodigoPostal.getText());
+        c.setDireccion(direccion);*/
+        return c;
+    }
 }

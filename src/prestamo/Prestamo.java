@@ -6,7 +6,11 @@
 
 package prestamo;
 
+import prestamo.Datos.ClienteHelper;
+import prestamo.Datos.TipoDocumentoHelper;
 import prestamo.Formularios.MainCliente;
+import prestamo.Modelo.Cliente;
+import prestamo.Modelo.TipoDocumento;
 
 /**
  *
@@ -19,10 +23,20 @@ public class Prestamo {
      */
     public static void main(String[] args) {
         MainCliente.main(args);
-        /*Cliente c = new Cliente();
-        c.setId(1);
-        c.setApellido("Acarapi");
+        /*ClienteHelper ch = new ClienteHelper();
+        Cliente c = new Cliente();
+        c.setApellido("Garcia");
+        c.setNombre("Alberto");
+        c.setNacionalidad("Boliviana");
         
-        System.out.println(c.getApellido());*/
+        ch.Save(c);*/
+        /*TipoDocumentoHelper tdh = new TipoDocumentoHelper();
+        //TipoDocumento td = (TipoDocumento)tdh.GetById(1, TipoDocumento.class);
+        TipoDocumento td = new TipoDocumento();
+        
+        td.setDescripcion("IE");
+        tdh.Save(td);*/
+       
+        
     }
 }

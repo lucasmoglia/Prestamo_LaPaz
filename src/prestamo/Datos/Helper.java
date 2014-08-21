@@ -18,10 +18,11 @@ import org.hibernate.Session;
  */
 public class Helper {
     
-     protected List GetDataList(String hql) {
+    protected Session session = HibernateUtil.getSessionFactory().openSession();
+
+    protected List GetDataList(String hql) {
         List resultList = new ArrayList();
         try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Query q = (Query) session.createQuery(hql);
             resultList = q.list();
@@ -32,5 +33,29 @@ public class Helper {
             resultList.add(he);
             return resultList;
         }                
+    }
+     
+    public Object GetById(int id, Class clase){
+        Object object = null;
+        try {
+            session.beginTransaction();
+            object =  session.get(clase, id);
+            session.getTransaction().commit();
+        }
+        catch (HibernateException e) {
+            session.getTransaction().rollback();
+        }
+        return object;
+    }
+    
+    public void Save(Object object) {
+        try {
+            session.beginTransaction();
+            session.save(object);
+            session.getTransaction().commit();
+        }
+        catch (HibernateException e) {
+            session.getTransaction().rollback();
+        }
     }
 }

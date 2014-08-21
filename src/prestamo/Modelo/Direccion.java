@@ -5,6 +5,8 @@ package prestamo.Modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,6 +28,7 @@ public class Direccion  implements java.io.Serializable {
      private Integer numero;
      private String piso;
      private String departamento;
+     private String codigoPostal;
 
     public Direccion() {
     }
@@ -44,6 +47,7 @@ public class Direccion  implements java.io.Serializable {
     }
    
     @Id 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id", unique=true, nullable=false)
     public int getId() {
         return this.id;
@@ -101,5 +105,14 @@ public class Direccion  implements java.io.Serializable {
     
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
+    }
+    
+    @Column(name="codigo_postal")
+    public String getCodigoPostal() {
+        return this.departamento;
+    }
+    
+    public void setCodigoPostal(String codigoPostal){
+        this.codigoPostal = codigoPostal;
     }
 }

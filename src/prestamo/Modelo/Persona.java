@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -47,9 +48,8 @@ public class Persona  implements java.io.Serializable {
        this.direccion = direccion;
     }
    
-     @Id @GeneratedValue
-
-    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     public int getId() {
         return this.id;
