@@ -11,7 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import prestamo.Datos.ClienteHelper;
+import prestamo.Datos.PrestamoHelper;
+import prestamo.Formularios.ComboItem;
+import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Cuota;
+import prestamo.Modelo.Prestamo;
+import prestamo.Modelo.TipoDocumento;
 
 /**
  *
@@ -22,6 +28,8 @@ public class PrestamoClienteColaborador {
     private prestamo.Math math;
     private List<Cuota> listaCuotas = new ArrayList<>();
     private DefaultTableModel model = new DefaultTableModel();
+    private ClienteHelper clienteHelper = new ClienteHelper();
+    private PrestamoHelper prestamoHelper = new PrestamoHelper();
     
     public PrestamoClienteColaborador(BigDecimal i, BigDecimal v, BigDecimal n){
         math = new prestamo.Math(i, v, n);
@@ -31,6 +39,11 @@ public class PrestamoClienteColaborador {
         math = new prestamo.Math();
     }
     
+    public void reiniciarCalculo(){
+        math = new prestamo.Math();
+        listaCuotas = new ArrayList<>();
+        model = new DefaultTableModel();
+    }
     public List<Cuota> generateCuotas(){
         List<Cuota> cuotas = new ArrayList<>();
         int cantidadCuotas = Integer.parseInt(getMath().getPeriodos().toString()) ;
@@ -38,29 +51,7 @@ public class PrestamoClienteColaborador {
             cuotas.add(generateCuota(i+1));
         }
         return cuotas;
-    }
-    
-    //
-    private Cuota generateCuota(int numeroCuota){
-        Cuota cuota = new Cuota();
-        BigDecimal periodo = new BigDecimal(numeroCuota);
-        getMath().GetInteresPorcentaje(); // se setea el interes porcentual
-        cuota.setMonto(getMath().GetCuota());
-        cuota.setNumeroCuota(numeroCuota);
-        
-        if(numeroCuota == 1){
-            cuota.setInteresPeriodo(getMath().GetInteresPrimerPeriodo());
-            cuota.setAmortizacion(getMath().GetPrimeraCuotaAmortizada());
-            cuota.setTotalAmortizado(getMath().GetPrimeraCuotaAmortizada());
-            cuota.setSaldoInicial(getMath().getValorActual());
-        }else if(numeroCuota > 1){
-            cuota.setInteresPeriodo(getMath().GetInteresPeriodosIntermedios(periodo));
-            cuota.setAmortizacion(getMath().GetCuotaAmortizadaPeriodo(periodo));
-            cuota.setTotalAmortizado(getMath().GetTotalAmortizado(periodo));
-            cuota.setSaldoInicial(getMath().GetSaldoInicialPeriodo(periodo));
-        }        
-        return cuota;
-    }
+    }    
 
     /**
      * @return the math
@@ -93,6 +84,55 @@ public class PrestamoClienteColaborador {
         return model;
     }
     
+    public List<ComboItem> getClientes(){
+        List<ComboItem> comboItemList = new ArrayList<>();
+        try{
+            for(Cliente c : clienteHelper.GeAllClientes()){
+                 comboItemList.add(new ComboItem(String.valueOf(c.getId()), getFullName(c)));
+             }
+            return comboItemList;
+        }catch(Exception ex){
+            return new ArrayList<>();
+        }
+    }
+    
+    public void Save(Prestamo prestamo) {
+        try{
+            prestamoHelper.SavePrestamo(prestamo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public Cliente getClienteById(String key) {
+        try{
+            return (Cliente)clienteHelper.GetById(Integer.parseInt(key), Cliente.class);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    private Cuota generateCuota(int numeroCuota){
+        Cuota cuota = new Cuota();
+        BigDecimal periodo = new BigDecimal(numeroCuota);
+        getMath().GetInteresPorcentaje(); // se setea el interes porcentual
+        cuota.setMonto(getMath().GetCuota());
+        cuota.setNumeroCuota(numeroCuota);
+        
+        if(numeroCuota == 1){
+            cuota.setInteresPeriodo(getMath().GetInteresPrimerPeriodo());
+            cuota.setAmortizacion(getMath().GetPrimeraCuotaAmortizada());
+            cuota.setTotalAmortizado(getMath().GetPrimeraCuotaAmortizada());
+            cuota.setSaldoInicial(getMath().getValorActual());
+        }else if(numeroCuota > 1){
+            cuota.setInteresPeriodo(getMath().GetInteresPeriodosIntermedios(periodo));
+            cuota.setAmortizacion(getMath().GetCuotaAmortizadaPeriodo(periodo));
+            cuota.setTotalAmortizado(getMath().GetTotalAmortizado(periodo));
+            cuota.setSaldoInicial(getMath().GetSaldoInicialPeriodo(periodo));
+        }        
+        return cuota;
+    }
+    
     private Vector objectToVector(Cuota c){
         Vector v = new Vector();
         v.add(c.getNumeroCuota());
@@ -112,5 +152,9 @@ public class PrestamoClienteColaborador {
         model.addColumn("Reduccion de capital");
         model.addColumn("Interes ");
         model.addColumn("Total Amortizado");
+    }
+
+    private String getFullName(Cliente c) {
+        return c != null ? c.getApellido() +", "+ c.getNombre(): "";
     }
 }

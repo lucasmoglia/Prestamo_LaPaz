@@ -8,6 +8,7 @@ package prestamo.Formularios;
 
 import java.math.BigDecimal;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
+import prestamo.Modelo.Prestamo;
 
 /**
  *
@@ -19,7 +20,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
     
     public PrestamoCliente() {
         initComponents();
-        jtCuotas.setVisible(false);
+        setDatosiniciales();
     }
 
     /**
@@ -46,6 +47,9 @@ public class PrestamoCliente extends javax.swing.JFrame {
         btnCalcularCuotas = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        ddlClientes = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        btnCrearPrestamo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(897, 558));
@@ -110,6 +114,15 @@ public class PrestamoCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel7.setText("Cliente");
+
+        btnCrearPrestamo.setText("Crear Prestamo");
+        btnCrearPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPrestamoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPrestamoClienteLayout = new javax.swing.GroupLayout(pnlPrestamoCliente);
         pnlPrestamoCliente.setLayout(pnlPrestamoClienteLayout);
         pnlPrestamoClienteLayout.setHorizontalGroup(
@@ -117,32 +130,39 @@ public class PrestamoCliente extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrestamoClienteLayout.createSequentialGroup()
                 .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCalcularCuotas))
+                        .addComponent(btnCrearPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPrestamoClienteLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtMontoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 22, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ddlCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(64, 64, 64)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTasaInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addGap(167, 167, 167))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPrestamoClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPrestamoClienteLayout.createSequentialGroup()
+                                .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ddlClientes, 0, 185, Short.MAX_VALUE)
+                                    .addComponent(txtMontoPrestamo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrestamoClienteLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ddlCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(64, 64, 64)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTasaInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
+                                        .addGap(167, 167, 167))
+                                    .addComponent(btnCalcularCuotas, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap())
         );
         pnlPrestamoClienteLayout.setVerticalGroup(
@@ -162,11 +182,20 @@ public class PrestamoCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtTasaInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(16, 16, 16)
-                .addComponent(btnCalcularCuotas)
+                .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(btnCalcularCuotas))
+                    .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ddlClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(440, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCrearPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(417, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +213,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularCuotasActionPerformed
-        colaborador = new PrestamoClienteColaborador();        
+        colaborador.reiniciarCalculo();
         prestamo.Math math = colaborador.getMath();
         math.setInteresTaza(new BigDecimal(this.txtTasaInteres.getText()));
         math.setValorActual(new BigDecimal(this.txtMontoPrestamo.getText()));
@@ -192,6 +221,10 @@ public class PrestamoCliente extends javax.swing.JFrame {
         jtCuotas.setVisible(true);
         jtCuotas.setModel(colaborador.getModel());        
     }//GEN-LAST:event_btnCalcularCuotasActionPerformed
+
+    private void btnCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPrestamoActionPerformed
+        savePrestamo();
+    }//GEN-LAST:event_btnCrearPrestamoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,6 +264,8 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcularCuotas;
+    private javax.swing.JButton btnCrearPrestamo;
+    private javax.swing.JComboBox ddlClientes;
     private javax.swing.JComboBox ddlCuotas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -238,6 +273,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -246,4 +282,26 @@ public class PrestamoCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtMontoPrestamo;
     private javax.swing.JTextField txtTasaInteres;
     // End of variables declaration//GEN-END:variables
+
+    private void setDatosiniciales() {
+        colaborador = new PrestamoClienteColaborador();        
+        jtCuotas.setVisible(false);
+        fillCombo();
+    }
+
+    private void fillCombo() {
+        Commons.loadCombo(ddlClientes, colaborador.getClientes());
+    }
+
+    private void savePrestamo() {
+        Prestamo prestamo = getPrestamoFormulario();
+        colaborador.Save(prestamo);
+    }
+
+    private Prestamo getPrestamoFormulario() {
+        Prestamo p = new Prestamo();
+        //p.setCuotas(colaborador.getListaCuotas());
+        p.setCliente(colaborador.getClienteById(((ComboItem)ddlClientes.getSelectedItem()).getKey()));
+        return p;
+    }
 }

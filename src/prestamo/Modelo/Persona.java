@@ -29,8 +29,8 @@ public class Persona  implements java.io.Serializable {
 
 
      private int id;
-     private String apellido;
-     private String nombre;
+     protected String apellido;
+     protected String nombre;
      private Integer numeroDocumento;
      private TipoDocumento tipoDocumento;
      private Direccion direccion;
@@ -60,7 +60,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     
-    @Column(name="apellido")
+    @Column(name="apellido", nullable = false)
     public String getApellido() {
         return this.apellido;
     }
@@ -70,7 +70,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     
-    @Column(name="nombre")
+    @Column(name="nombre", nullable = false )
     public String getNombre() {
         return this.nombre;
     }

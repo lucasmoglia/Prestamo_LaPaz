@@ -14,7 +14,6 @@ import java.util.List;
 import prestamo.Datos.ClienteHelper;
 import prestamo.Datos.TipoDocumentoHelper;
 import prestamo.Formularios.ComboItem;
-import prestamo.Formularios.NuevoCliente;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.TipoDocumento;
 
@@ -24,8 +23,8 @@ import prestamo.Modelo.TipoDocumento;
  */
 public class NuevoClienteColaborador {
     
-    TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
-    ClienteHelper clienteHelper = new ClienteHelper();
+    private TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
+    private ClienteHelper clienteHelper = new ClienteHelper();
     
     public NuevoClienteColaborador(){}
     
@@ -66,7 +65,7 @@ public class NuevoClienteColaborador {
 
     public void Save(Cliente c) {
         try{
-            clienteHelper.Save(c);
+            clienteHelper.SaveCliente(c);
         }catch(Exception e){
             System.out.println(e);
         }

@@ -586,11 +586,11 @@ public class NuevoCliente extends javax.swing.JFrame {
                                                  ddlMesNacimiento.getSelectedItem().toString(), 
                                                  ddlAnioNacimiento.getSelectedItem().toString()));
         // Datos de Dirección
-        /*Direccion direccion = new Direccion();
+        Direccion direccion = new Direccion();
         direccion.setCalle(txtDomicilio.getText());
         direccion.setNumero(Integer.parseInt(txtNumero.getText()));
         direccion.setCodigoPostal(txtCodigoPostal.getText());
-        c.setDireccion(direccion);*/
+        c.setDireccion(direccion);
         return c;
     }
 }

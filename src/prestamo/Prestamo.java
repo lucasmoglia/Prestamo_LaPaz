@@ -25,6 +25,9 @@ public class Prestamo {
         MainCliente.main(args);
         /*ClienteHelper ch = new ClienteHelper();
         Cliente c = new Cliente();
+        c.setTipoDocumento(new TipoDocumento());
+        ch.SaveCliente(c);
+        Cliente c = new Cliente();
         c.setApellido("Garcia");
         c.setNombre("Alberto");
         c.setNacionalidad("Boliviana");

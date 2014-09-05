@@ -23,10 +23,8 @@ public class Helper {
     protected List GetDataList(String hql) {
         List resultList = new ArrayList();
         try {
-            session.beginTransaction();
             Query q = (Query) session.createQuery(hql);
             resultList = q.list();
-            session.getTransaction().commit();
             return resultList;
             
         } catch (HibernateException he) {
@@ -38,9 +36,7 @@ public class Helper {
     public Object GetById(int id, Class clase){
         Object object = null;
         try {
-            session.beginTransaction();
             object =  session.get(clase, id);
-            session.getTransaction().commit();
         }
         catch (HibernateException e) {
             session.getTransaction().rollback();
@@ -55,6 +51,7 @@ public class Helper {
             session.getTransaction().commit();
         }
         catch (HibernateException e) {
+            System.out.println(e);
             session.getTransaction().rollback();
         }
     }
