@@ -127,4 +127,9 @@ public class Persona  implements java.io.Serializable {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
+    
+    @Column(name="telefono")
+    public String getTelefono() {
+        return this.nacionalidad;
+    }
 }

@@ -23,8 +23,8 @@ import prestamo.Modelo.TipoDocumento;
  */
 public class NuevoClienteColaborador {
     
-    private TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
-    private ClienteHelper clienteHelper = new ClienteHelper();
+    private final TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
+    private final ClienteHelper clienteHelper = new ClienteHelper();
     
     public NuevoClienteColaborador(){}
     

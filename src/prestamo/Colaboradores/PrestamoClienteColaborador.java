@@ -17,7 +17,6 @@ import prestamo.Formularios.ComboItem;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Cuota;
 import prestamo.Modelo.Prestamo;
-import prestamo.Modelo.TipoDocumento;
 
 /**
  *
@@ -28,8 +27,8 @@ public class PrestamoClienteColaborador {
     private prestamo.Math math;
     private List<Cuota> listaCuotas = new ArrayList<>();
     private DefaultTableModel model = new DefaultTableModel();
-    private ClienteHelper clienteHelper = new ClienteHelper();
-    private PrestamoHelper prestamoHelper = new PrestamoHelper();
+    private final ClienteHelper clienteHelper = new ClienteHelper();
+    private final PrestamoHelper prestamoHelper = new PrestamoHelper();
     
     public PrestamoClienteColaborador(BigDecimal i, BigDecimal v, BigDecimal n){
         math = new prestamo.Math(i, v, n);
