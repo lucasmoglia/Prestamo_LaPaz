@@ -22,11 +22,11 @@ public class AdministracionClienteColaborador {
     
     ClienteHelper clienteHelper = new ClienteHelper();
     List<Cliente> listaClientes = new ArrayList<>();
-    private DefaultTableModel model = new DefaultTableModel();
+    private final DefaultTableModel model = new DefaultTableModel();
     
     public AdministracionClienteColaborador(){}
     
-        public DefaultTableModel getModel() {
+    public DefaultTableModel getModel() {
         listaClientes = listaClientes.isEmpty() ? getListaClientes() : listaClientes;
         definirColumnas(model);
         for(Cliente c : listaClientes){
@@ -50,7 +50,8 @@ public class AdministracionClienteColaborador {
         model.addColumn("Cliente");
         model.addColumn("Nacionalidad");
         model.addColumn("Teléfono");
-        model.addColumn("Numero Documento ");
+        model.addColumn("Numero Documento");
+        model.addColumn("Ocupación");
     }
 
     private Vector objectToVector(Cliente c) {
@@ -58,9 +59,9 @@ public class AdministracionClienteColaborador {
         v.add("A definir");
         v.add(getFullName(c));
         v.add(c.getNacionalidad());
-        /*v.add(c.getTe;)
-        v.add(c.getInteresPeriodo());        
-        v.add(c.getTotalAmortizado());*/
+        v.add(c.getTelefono());
+        v.add(c.getNumeroDocumento());        
+        v.add(c.getOcupacion());
         
         return v;
     }

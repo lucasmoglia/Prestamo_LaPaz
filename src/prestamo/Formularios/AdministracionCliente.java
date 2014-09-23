@@ -8,17 +8,19 @@ package prestamo.Formularios;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import prestamo.Colaboradores.AdministracionClienteColaborador;
 /**
  *
  * @author L0395118
  */
 public class AdministracionCliente extends javax.swing.JFrame {
-
+    private AdministracionClienteColaborador colaborador;
     /**
      * Creates new form Principal
      */
     public AdministracionCliente() {
         initComponents();
+        setDatosIniciales();
     }
 
     /**
@@ -178,4 +180,9 @@ public class AdministracionCliente extends javax.swing.JFrame {
     public javax.swing.JPanel pnlAdministracionClienteForm;
     private javax.swing.JPanel pnlTituloAdministracionCliente;
     // End of variables declaration//GEN-END:variables
+
+    private void setDatosIniciales() {
+        colaborador = new AdministracionClienteColaborador();
+        jtClientes.setModel(colaborador.getModel());        
+    }
 }
