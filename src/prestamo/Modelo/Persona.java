@@ -36,6 +36,7 @@ public class Persona  implements java.io.Serializable {
      private Direccion direccion;
      private Date fechaNacimiento;
      private String nacionalidad;
+     private String telefono;
 
     public Persona() {
     }
@@ -126,5 +127,14 @@ public class Persona  implements java.io.Serializable {
     
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
+    }
+    
+    @Column(name="telefono")
+    public String getTelefono() {
+        return this.telefono;
+    }
+    
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
