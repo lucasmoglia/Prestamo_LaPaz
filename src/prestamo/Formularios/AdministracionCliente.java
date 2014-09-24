@@ -40,6 +40,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         pnlTituloAdministracionCliente = new javax.swing.JPanel();
         lblTituloAdminCliente = new javax.swing.JLabel();
+        btnModificarCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +87,8 @@ public class AdministracionCliente extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        btnModificarCliente.setText("Modificar Cliente");
+
         javax.swing.GroupLayout pnlAdministracionClienteFormLayout = new javax.swing.GroupLayout(pnlAdministracionClienteForm);
         pnlAdministracionClienteForm.setLayout(pnlAdministracionClienteFormLayout);
         pnlAdministracionClienteFormLayout.setHorizontalGroup(
@@ -100,7 +103,9 @@ public class AdministracionCliente extends javax.swing.JFrame {
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdministracionClienteFormLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnNuevoCliente)))
+                        .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -115,7 +120,9 @@ public class AdministracionCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(btnNuevoCliente)
+                .addGroup(pnlAdministracionClienteFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -129,7 +136,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlAdministracionClienteForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(537, Short.MAX_VALUE))
+                .addContainerGap(525, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,6 +171,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new AdministracionCliente().setVisible(true);
             }
@@ -171,6 +179,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnNuevoCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -185,4 +194,10 @@ public class AdministracionCliente extends javax.swing.JFrame {
         colaborador = new AdministracionClienteColaborador();
         jtClientes.setModel(colaborador.getModel());        
     }
+    
+    /*public Component getTableCellEditorComponent(
+    JTable table, Object value, boolean isSelected, int row, int column) {
+      editButton.setText( value.toString() );
+      editButton.setIcon( null );
+    }*/
 }

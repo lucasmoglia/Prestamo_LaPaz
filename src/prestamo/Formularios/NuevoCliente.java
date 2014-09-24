@@ -779,6 +779,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         c.setFechaNacimiento(colaborador.getDate(ddlDiaNacimiento.getSelectedItem().toString(), 
                                                  ddlMesNacimiento.getSelectedItem().toString(), 
                                                  ddlAnioNacimiento.getSelectedItem().toString()));
+        c.setTelefono(txtTelefono.getText());
         // Datos de Dirección
         Direccion direccion = new Direccion();
         direccion.setCalle(txtDomicilio.getText());

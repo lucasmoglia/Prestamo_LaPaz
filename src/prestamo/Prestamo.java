@@ -6,24 +6,7 @@
 
 package prestamo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.query.JRHibernateQueryExecuterFactory;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import org.hibernate.Session;
-import prestamo.Datos.ClienteHelper;
-import prestamo.Datos.HibernateUtil;
-import prestamo.Datos.TipoDocumentoHelper;
 import prestamo.Formularios.MainCliente;
-import prestamo.Modelo.Cliente;
-import prestamo.Modelo.TipoDocumento;
 
 /**
  *

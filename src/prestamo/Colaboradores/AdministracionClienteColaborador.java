@@ -11,7 +11,6 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import prestamo.Datos.ClienteHelper;
 import prestamo.Modelo.Cliente;
-import prestamo.Modelo.Cuota;
 
 
 /**
