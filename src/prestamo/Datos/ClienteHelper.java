@@ -32,6 +32,7 @@ public class ClienteHelper extends Helper{
     public void SaveCliente(Cliente cliente){
         Direccion direccion = cliente.getDireccion();
         Garante garante = cliente.getGarante();
+        Direccion direccionGarante = garante.getDireccion();
         try{
             session.beginTransaction();
             if(direccion != null){
@@ -39,9 +40,13 @@ public class ClienteHelper extends Helper{
                 cliente.setDireccion(direccion);
             }
             if(garante != null){
+                if(direccionGarante!= null){
+                    session.save(direccionGarante);
+                    garante.setDireccion(direccionGarante);
+                }
                 session.save(garante);
                 cliente.setGarante(garante);
-            }
+            }            
             
             session.save(cliente);
             session.getTransaction().commit();

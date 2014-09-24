@@ -8,7 +8,11 @@ package prestamo.Colaboradores;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import prestamo.Datos.ClienteHelper;
@@ -156,5 +160,13 @@ public class PrestamoClienteColaborador {
 
     private String getFullName(Cliente c) {
         return c != null ? c.getApellido() +", "+ c.getNombre(): "";
+    }
+
+    public Set<Cuota> getListaCuotasSet() {
+        Set list = new HashSet();
+        for (Cuota c : listaCuotas) {
+            list.add(c);
+        }
+        return list;
     }
 }

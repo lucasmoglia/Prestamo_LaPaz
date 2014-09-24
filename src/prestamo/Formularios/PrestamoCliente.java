@@ -300,7 +300,9 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
     private Prestamo getPrestamoFormulario() {
         Prestamo p = new Prestamo();
-        //p.setCuotas(colaborador.getListaCuotas());
+        p.setMontoTotal(new BigDecimal(txtMontoPrestamo.getText()));
+        p.setInteres(new BigDecimal(txtTasaInteres.getText()));
+        p.setCuotas(colaborador.getListaCuotasSet());
         p.setCliente(colaborador.getClienteById(((ComboItem)ddlClientes.getSelectedItem()).getKey()));
         return p;
     }

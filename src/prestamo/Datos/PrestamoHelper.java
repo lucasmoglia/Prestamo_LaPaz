@@ -19,6 +19,7 @@ public class PrestamoHelper extends Helper{
         try{
             session.beginTransaction();  
             for(Cuota c : prestamo.getCuotas()){
+                c.setPrestamo(prestamo);
                 session.save(c);
             }
             session.save(prestamo);

@@ -9,6 +9,7 @@ package prestamo.Formularios;
 import prestamo.Colaboradores.NuevoClienteColaborador;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Direccion;
+import prestamo.Modelo.Garante;
 
 /**
  *
@@ -20,6 +21,7 @@ public class NuevoCliente extends javax.swing.JFrame {
      * Creates new form NuevoCliente
      */
     private NuevoClienteColaborador colaborador = new NuevoClienteColaborador();
+    Garante garante;
     
     public NuevoCliente() {
         initComponents();
@@ -35,6 +37,24 @@ public class NuevoCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdGarante = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        txtCodigoPostalGarante = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txtDepartamentoGarante = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        txtPisoGarante = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        txtNombreGarante = new javax.swing.JTextField();
+        txtNumeroGarante = new javax.swing.JTextField();
+        txtApellidoGarante = new javax.swing.JTextField();
+        btnGuardarGarante = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        txtDomicilioGarante = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
         pnlAdministracionCliente = new javax.swing.JPanel();
         pnlTituloAdministracionCliente = new javax.swing.JPanel();
         lblTituloNuevoCliente = new javax.swing.JLabel();
@@ -85,6 +105,127 @@ public class NuevoCliente extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
+        lblGarante = new javax.swing.JLabel();
+        btnGarante = new javax.swing.JButton();
+
+        jdGarante.setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel19.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel19.setText("Datos Garante");
+
+        jLabel20.setText("Nombre");
+
+        jLabel21.setText("Apellido");
+
+        jLabel26.setText("Piso");
+
+        jLabel27.setText("Nro");
+
+        txtNombreGarante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreGaranteActionPerformed(evt);
+            }
+        });
+
+        btnGuardarGarante.setText("Guardar");
+        btnGuardarGarante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarGaranteActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Calle");
+
+        jLabel24.setText("Código Postal");
+
+        jLabel25.setText("Departamento");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnGuardarGarante)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel24))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDepartamentoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPisoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDomicilioGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumeroGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtApellidoGarante)
+                            .addComponent(txtNombreGarante)
+                            .addComponent(txtCodigoPostalGarante))))
+                .addGap(35, 35, 35))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel19)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellidoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(txtDepartamentoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPisoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumeroGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27)
+                            .addComponent(txtDomicilioGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel26)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigoPostalGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardarGarante)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jdGaranteLayout = new javax.swing.GroupLayout(jdGarante.getContentPane());
+        jdGarante.getContentPane().setLayout(jdGaranteLayout);
+        jdGaranteLayout.setHorizontalGroup(
+            jdGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jdGaranteLayout.setVerticalGroup(
+            jdGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -196,6 +337,16 @@ public class NuevoCliente extends javax.swing.JFrame {
 
         jLabel18.setText("Nro");
 
+        lblGarante.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblGarante.setText("Garante");
+
+        btnGarante.setText("Agregar Garante");
+        btnGarante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaranteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlNuevoClienteLayout = new javax.swing.GroupLayout(pnlNuevoCliente);
         pnlNuevoCliente.setLayout(pnlNuevoClienteLayout);
         pnlNuevoClienteLayout.setHorizontalGroup(
@@ -281,10 +432,15 @@ public class NuevoCliente extends javax.swing.JFrame {
                                     .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
-                                        .addComponent(jLabel10)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel11)
+                                            .addComponent(lblGarante))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                                            .addComponent(btnGarante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
                                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,9 +458,6 @@ public class NuevoCliente extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevoClienteLayout.createSequentialGroup()
                                 .addComponent(jScrollPane1)
                                 .addContainerGap())
-                            .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                                 .addComponent(jSeparator3)
                                 .addContainerGap())))
@@ -342,9 +495,13 @@ public class NuevoCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGarante))
+                        .addComponent(jLabel16))
+                    .addComponent(lblGarante, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlNuevoClienteLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -403,9 +560,9 @@ public class NuevoCliente extends javax.swing.JFrame {
                         .addGroup(pnlNuevoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregarCliente)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout pnlTituloAdministracionClienteLayout = new javax.swing.GroupLayout(pnlTituloAdministracionCliente);
@@ -438,7 +595,7 @@ public class NuevoCliente extends javax.swing.JFrame {
             pnlAdministracionClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdministracionClienteLayout.createSequentialGroup()
                 .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -468,6 +625,21 @@ public class NuevoCliente extends javax.swing.JFrame {
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
         saveCliente();
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
+
+    private void btnGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaranteActionPerformed
+        ObjectToForm();
+        jdGarante.setVisible(true);
+    }//GEN-LAST:event_btnGaranteActionPerformed
+
+    private void btnGuardarGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarGaranteActionPerformed
+        SaveGarante();
+        btnGarante.setText("Modificar Garante");
+        jdGarante.setVisible(false);
+    }//GEN-LAST:event_btnGuardarGaranteActionPerformed
+
+    private void txtNombreGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreGaranteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreGaranteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -509,6 +681,8 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarCliente;
     private javax.swing.JButton btnAgregarOtroCelular;
     private javax.swing.JButton btnAgregarOtroTelefono;
+    private javax.swing.JButton btnGarante;
+    private javax.swing.JButton btnGuardarGarante;
     private javax.swing.JComboBox ddlAnioNacimiento;
     private javax.swing.JComboBox ddlDiaNacimiento;
     private javax.swing.JComboBox ddlMesNacimiento;
@@ -523,7 +697,15 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -531,12 +713,15 @@ public class NuevoCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JDialog jdGarante;
     private javax.swing.JLabel lblApellidoCliente;
     private javax.swing.JLabel lblDatosPersonales;
+    private javax.swing.JLabel lblGarante;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblTituloNuevoCliente;
     private javax.swing.JList lstOtroscontactos;
@@ -544,23 +729,31 @@ public class NuevoCliente extends javax.swing.JFrame {
     public javax.swing.JPanel pnlNuevoCliente;
     public javax.swing.JPanel pnlTituloAdministracionCliente;
     private javax.swing.JTextField txtApellidoCliente;
+    private javax.swing.JTextField txtApellidoGarante;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JTextField txtCodigoPostal;
+    private javax.swing.JTextField txtCodigoPostalGarante;
     private javax.swing.JTextField txtDepartamento;
+    private javax.swing.JTextField txtDepartamentoGarante;
     private javax.swing.JTextField txtDocCliente;
     private javax.swing.JTextField txtDomicilio;
+    private javax.swing.JTextField txtDomicilioGarante;
     private javax.swing.JTextField txtNacionalidad;
     private javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtNombreGarante;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtNumeroGarante;
     private javax.swing.JFormattedTextField txtOtroCelular;
     private javax.swing.JFormattedTextField txtOtroTelefono;
     private javax.swing.JTextField txtPiso;
+    private javax.swing.JTextField txtPisoGarante;
     private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
     private void setDatosIniciales() {
         colaborador = new NuevoClienteColaborador();
         fillCombos();
+        jdGarante.setSize(450,350);
     }
 
     private void fillCombos() {        
@@ -570,6 +763,7 @@ public class NuevoCliente extends javax.swing.JFrame {
 
     private void saveCliente() {
         Cliente c = getClienteFormulario();
+        c.setGarante(garante);
         colaborador.Save(c);
     }
 
@@ -592,5 +786,30 @@ public class NuevoCliente extends javax.swing.JFrame {
         direccion.setCodigoPostal(txtCodigoPostal.getText());
         c.setDireccion(direccion);
         return c;
+    }
+
+    private void SaveGarante() {
+        garante = new Garante();
+        garante.setNombre(txtNombreGarante.getText());
+        garante.setApellido(txtApellidoGarante.getText());
+        Direccion dirGarante = new Direccion();
+        dirGarante.setCalle(txtDepartamentoGarante.getText());
+        dirGarante.setNumero(Integer.parseInt(txtNumeroGarante.getText()));
+        dirGarante.setCodigoPostal(txtCodigoPostalGarante.getText());
+        dirGarante.setDepartamento(txtDepartamentoGarante.getText());
+        dirGarante.setPiso(txtPisoGarante.getText());
+        garante.setDireccion(dirGarante);
+    }
+
+    private void ObjectToForm() {
+        if(garante != null){
+            txtNombreGarante.setText(garante.getNombre());
+            txtApellidoGarante.setText(garante.getApellido());
+            Direccion direccion = garante.getDireccion();
+            txtDomicilioGarante.setText(direccion.getCalle());
+            txtNumeroGarante.setText(direccion.getNumero()!= 0 ? direccion.getNumero().toString() : "");
+            txtPisoGarante.setText(direccion.getPiso());
+            txtDepartamentoGarante.setText(direccion.getDepartamento());
+        }
     }
 }
