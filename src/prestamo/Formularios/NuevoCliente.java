@@ -6,6 +6,8 @@
 
 package prestamo.Formularios;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import prestamo.Colaboradores.NuevoClienteColaborador;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Direccion;
@@ -762,20 +764,23 @@ public class NuevoCliente extends javax.swing.JFrame {
     }
 
     private void saveCliente() {
-        Cliente c = getClienteFormulario();
+        Cliente c = getClienteFormulario();        
         c.setGarante(garante);
-        colaborador.Save(c);
+        ArrayList validador = isValidCliente(c);
+        if((boolean)validador.get(0))
+            colaborador.Save(c);
+        else
+            JOptionPane.showMessageDialog(rootPane, validador.get(1), "Hola", 1);
     }
 
     private Cliente getClienteFormulario() {
-        Cliente c = new Cliente();
-        
+        Cliente c = new Cliente();      
         // Datos generales del cliente
         c.setNombre(txtNombreCliente.getText());
         c.setApellido(txtApellidoCliente.getText());
         c.setNacionalidad(txtNacionalidad.getText());
         c.setTipoDocumento(colaborador.getTipoDocumentoById(((ComboItem)ddlTipodocumento.getSelectedItem()).getKey()));
-        c.setNumeroDocumento(Integer.parseInt(txtDocCliente.getText()));
+        c.setNumeroDocumento(!txtDocCliente.getText().equals("") ? Integer.parseInt(txtDocCliente.getText()) : 0);
         c.setFechaNacimiento(colaborador.getDate(ddlDiaNacimiento.getSelectedItem().toString(), 
                                                  ddlMesNacimiento.getSelectedItem().toString(), 
                                                  ddlAnioNacimiento.getSelectedItem().toString()));
@@ -783,7 +788,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         // Datos de Dirección
         Direccion direccion = new Direccion();
         direccion.setCalle(txtDomicilio.getText());
-        direccion.setNumero(Integer.parseInt(txtNumero.getText()));
+        direccion.setNumero(!txtNumero.getText().equals("") ? Integer.parseInt(txtNumero.getText()) : 0);
         direccion.setCodigoPostal(txtCodigoPostal.getText());
         c.setDireccion(direccion);
         return c;
@@ -812,5 +817,13 @@ public class NuevoCliente extends javax.swing.JFrame {
             txtPisoGarante.setText(direccion.getPiso());
             txtDepartamentoGarante.setText(direccion.getDepartamento());
         }
+    }
+
+    private ArrayList isValidCliente(Cliente c) {
+        ArrayList resultado = new ArrayList<>();
+        String message = "esto cambio";
+        resultado.add(false);
+        resultado.add(message);
+        return resultado;
     }
 }
