@@ -766,11 +766,11 @@ public class NuevoCliente extends javax.swing.JFrame {
     private void saveCliente() {
         Cliente c = getClienteFormulario();        
         c.setGarante(garante);
-        ArrayList validador = isValidCliente(c);
+        ArrayList validador = colaborador.isValidCliente(c);
         if((boolean)validador.get(0))
             colaborador.Save(c);
         else
-            JOptionPane.showMessageDialog(rootPane, validador.get(1), "Hola", 1);
+            JOptionPane.showMessageDialog(rootPane, validador.get(1), "Mensaje de Error", 1);
     }
 
     private Cliente getClienteFormulario() {
@@ -817,13 +817,5 @@ public class NuevoCliente extends javax.swing.JFrame {
             txtPisoGarante.setText(direccion.getPiso());
             txtDepartamentoGarante.setText(direccion.getDepartamento());
         }
-    }
-
-    private ArrayList isValidCliente(Cliente c) {
-        ArrayList resultado = new ArrayList<>();
-        String message = "esto cambio";
-        resultado.add(false);
-        resultado.add(message);
-        return resultado;
     }
 }

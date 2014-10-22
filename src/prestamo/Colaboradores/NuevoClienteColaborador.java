@@ -15,7 +15,9 @@ import prestamo.Datos.ClienteHelper;
 import prestamo.Datos.TipoDocumentoHelper;
 import prestamo.Formularios.ComboItem;
 import prestamo.Modelo.Cliente;
+import prestamo.Modelo.Persona;
 import prestamo.Modelo.TipoDocumento;
+import prestamo.Modelo.Validadores.PersonaValidador;
 
 /**
  *
@@ -25,6 +27,7 @@ public class NuevoClienteColaborador {
     
     private final TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
     private final ClienteHelper clienteHelper = new ClienteHelper();
+    private PersonaValidador personaValidator;
     
     public NuevoClienteColaborador(){}
     
@@ -69,5 +72,22 @@ public class NuevoClienteColaborador {
         }catch(Exception e){
             System.out.println(e);
         }
+    }
+    
+    // Validacion de errores
+    
+    public ArrayList isValidCliente(Cliente c) {
+        ArrayList resultado = new ArrayList<>();
+        personaValidator = new PersonaValidador((Persona)c);
+        boolean isValid = true;
+        String message = "Por favor corrija los siguientes errores: \n" ;        
+        if(personaValidator.isIsValid()){
+            
+        }
+        //}else if(c.(c))
+            
+        resultado.add(isValid);
+        resultado.add(message);
+        return resultado;
     }
 }
