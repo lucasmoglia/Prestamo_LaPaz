@@ -17,6 +17,7 @@ import prestamo.Formularios.ComboItem;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Persona;
 import prestamo.Modelo.TipoDocumento;
+import prestamo.Modelo.Validadores.ObjectValidator;
 import prestamo.Modelo.Validadores.PersonaValidador;
 
 /**
@@ -76,18 +77,18 @@ public class NuevoClienteColaborador {
     
     // Validacion de errores
     
-    public ArrayList isValidCliente(Cliente c) {
-        ArrayList resultado = new ArrayList<>();
+    public ObjectValidator isValidCliente(Cliente c) {
+        ObjectValidator resultado = new ObjectValidator();
         personaValidator = new PersonaValidador((Persona)c);
         boolean isValid = true;
         String message = "Por favor corrija los siguientes errores: \n" ;        
-        if(personaValidator.isIsValid()){
-            
+        isValid = personaValidator.isIsValid();
+        if(!isValid){
+            message += personaValidator.getMessage();
         }
-        //}else if(c.(c))
             
-        resultado.add(isValid);
-        resultado.add(message);
+        resultado.setIsValid(isValid);
+        resultado.setMessage(message);
         return resultado;
     }
 }

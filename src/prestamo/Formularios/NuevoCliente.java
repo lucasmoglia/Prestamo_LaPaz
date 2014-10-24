@@ -8,10 +8,12 @@ package prestamo.Formularios;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.xml.validation.Validator;
 import prestamo.Colaboradores.NuevoClienteColaborador;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Direccion;
 import prestamo.Modelo.Garante;
+import prestamo.Modelo.Validadores.ObjectValidator;
 
 /**
  *
@@ -766,11 +768,11 @@ public class NuevoCliente extends javax.swing.JFrame {
     private void saveCliente() {
         Cliente c = getClienteFormulario();        
         c.setGarante(garante);
-        ArrayList validador = colaborador.isValidCliente(c);
-        if((boolean)validador.get(0))
+        ObjectValidator validador = colaborador.isValidCliente(c);
+        if(validador.isIsValid())
             colaborador.Save(c);
         else
-            JOptionPane.showMessageDialog(rootPane, validador.get(1), "Mensaje de Error", 1);
+            JOptionPane.showMessageDialog(rootPane, validador.getMessage(), "Mensaje de Error", 1);
     }
 
     private Cliente getClienteFormulario() {
