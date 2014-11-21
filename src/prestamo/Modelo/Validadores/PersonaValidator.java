@@ -11,9 +11,9 @@ import prestamo.Modelo.Persona;
  *
  * @author acarapi
  */
-public final class PersonaValidador extends ObjectValidator {
+public class PersonaValidator extends ObjectValidator {
     private final Persona persona;
-    public PersonaValidador(Persona persona){
+    public PersonaValidator(Persona persona){
         this.persona = persona;
         ValidateObject();
     }
