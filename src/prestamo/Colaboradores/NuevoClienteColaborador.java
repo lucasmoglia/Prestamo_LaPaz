@@ -18,7 +18,7 @@ import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Persona;
 import prestamo.Modelo.TipoDocumento;
 import prestamo.Modelo.Validadores.ObjectValidator;
-import prestamo.Modelo.Validadores.PersonaValidador;
+import prestamo.Modelo.Validadores.PersonaValidator;
 
 /**
  *
@@ -28,7 +28,7 @@ public class NuevoClienteColaborador {
     
     private final TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
     private final ClienteHelper clienteHelper = new ClienteHelper();
-    private PersonaValidador personaValidator;
+    private PersonaValidator personaValidator;
     
     public NuevoClienteColaborador(){}
     
@@ -79,7 +79,7 @@ public class NuevoClienteColaborador {
     
     public ObjectValidator isValidCliente(Cliente c) {
         ObjectValidator resultado = new ObjectValidator();
-        personaValidator = new PersonaValidador((Persona)c);
+        personaValidator = new PersonaValidator((Persona)c);
         boolean isValid = true;
         String message = "Por favor corrija los siguientes errores: \n" ;        
         isValid = personaValidator.isIsValid();
