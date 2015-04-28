@@ -15,7 +15,7 @@ import prestamo.Modelo.Prestamo;
  * @author Elizabeth
  */
 public class PrestamoHelper extends Helper{
-        public void SavePrestamo(Prestamo prestamo){        
+    public void SavePrestamo(Prestamo prestamo){        
         try{
             session.beginTransaction();  
             for(Cuota c : prestamo.getCuotas()){
