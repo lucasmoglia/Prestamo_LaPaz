@@ -15,6 +15,12 @@ import prestamo.Colaboradores.AdministracionClienteColaborador;
  */
 public class AdministracionCliente extends javax.swing.JFrame {
     private AdministracionClienteColaborador colaborador;
+    private int idCliente;
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+    
     /**
      * Creates new form Principal
      */
@@ -35,12 +41,10 @@ public class AdministracionCliente extends javax.swing.JFrame {
         pnlAdministracionClienteForm = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtClientes = new javax.swing.JTable();
-        btnNuevoCliente = new javax.swing.JButton();
         lblCliente = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         pnlTituloAdministracionCliente = new javax.swing.JPanel();
         lblTituloAdminCliente = new javax.swing.JLabel();
-        btnModificarCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,9 +61,12 @@ public class AdministracionCliente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtClientes);
-
-        btnNuevoCliente.setText("Nuevo Cliente");
 
         lblCliente.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         lblCliente.setText("Clientes");
@@ -87,8 +94,6 @@ public class AdministracionCliente extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        btnModificarCliente.setText("Modificar Cliente");
-
         javax.swing.GroupLayout pnlAdministracionClienteFormLayout = new javax.swing.GroupLayout(pnlAdministracionClienteForm);
         pnlAdministracionClienteForm.setLayout(pnlAdministracionClienteFormLayout);
         pnlAdministracionClienteFormLayout.setHorizontalGroup(
@@ -100,12 +105,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
                     .addGroup(pnlAdministracionClienteFormLayout.createSequentialGroup()
                         .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdministracionClienteFormLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator1))
                 .addContainerGap())
             .addComponent(pnlTituloAdministracionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -118,12 +118,8 @@ public class AdministracionCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(pnlAdministracionClienteFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,11 +132,18 @@ public class AdministracionCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlAdministracionClienteForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
+        Integer selectedRow = jtClientes.getSelectedRow();
+        if (selectedRow !=null){
+           idCliente = Integer.parseInt(jtClientes.getValueAt(selectedRow, 0).toString());        
+        }
+    }//GEN-LAST:event_jtClientesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -179,8 +182,6 @@ public class AdministracionCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnModificarCliente;
-    private javax.swing.JButton btnNuevoCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jtClientes;
@@ -192,8 +193,17 @@ public class AdministracionCliente extends javax.swing.JFrame {
 
     private void setDatosIniciales() {
         colaborador = new AdministracionClienteColaborador();
-        jtClientes.setModel(colaborador.getModel());        
+        jtClientes.setModel(colaborador.getModel());
+        hideFirstColumnTable();
     }
+    
+    private void hideFirstColumnTable(){
+        jtClientes.getColumnModel().getColumn(0).setMaxWidth(0);
+        jtClientes.getColumnModel().getColumn(0).setMinWidth(0);
+        jtClientes.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
+            
+    
     
     /*public Component getTableCellEditorComponent(
     JTable table, Object value, boolean isSelected, int row, int column) {

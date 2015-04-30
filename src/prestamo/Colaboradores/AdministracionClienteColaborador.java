@@ -45,22 +45,24 @@ public class AdministracionClienteColaborador {
     }
 
     private void definirColumnas(DefaultTableModel model) {
+        model.addColumn("Id");
         model.addColumn("Code");
         model.addColumn("Cliente");
         model.addColumn("Nacionalidad");
         model.addColumn("Teléfono");
         model.addColumn("Numero Documento");
-        model.addColumn("Ocupación");
+        model.addColumn("Ocupación");        
     }
 
     private Vector objectToVector(Cliente c) {
         Vector v = new Vector();
+        v.add(c.getId());
         v.add("A definir");
         v.add(getFullName(c));
         v.add(c.getNacionalidad());
         v.add(c.getTelefono());
         v.add(c.getNumeroDocumento());        
-        v.add(c.getOcupacion());
+        v.add(c.getOcupacion());        
         
         return v;
     }

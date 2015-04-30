@@ -19,18 +19,26 @@ public class PersonaValidator extends ObjectValidator {
     }
     
     public void ValidateObject() {
-        if(persona.getApellido().equals("")){
+        String entidad = getNombreEntidad();
+        
+        if(persona.getApellido() == null || persona.getApellido().isEmpty()){
             super.isValid = false;
-            super.message += "- Ingrese Apellido \n";
-        }if(persona.getNombre().equals("")){
+            super.message += "- Ingrese Apellido del "+entidad+" \n";
+        }if(persona.getNombre() == null || persona.getNombre().isEmpty()){
             super.isValid = false;
-            super.message += "- Ingrese Nombre \n";
-        }if(persona.getNumeroDocumento().equals(0)){
+            super.message += "- Ingrese Nombre del " + entidad +" \n";
+        }if(persona.getNumeroDocumento() == null || persona.getNumeroDocumento().equals(0)){
             super.isValid = false;
-            super.message += "- Ingrese un número de documento \n";
+            super.message += "- Ingrese un número de documento para el "+entidad+" \n";
         }if(persona.getTipoDocumento() == null){
             super.isValid = false;
-            super.message += "- Ingrese un tipo de documento \n";
+            super.message += "- Ingrese un tipo de documento para el " + entidad + "\n";
         }      
     }    
+
+    private String getNombreEntidad() {
+        //case()
+        String[]nombreClase = persona.getClass().getTypeName().split("\\.");               
+        return nombreClase[nombreClase.length-1]; 
+    }
 }

@@ -19,12 +19,12 @@ public class DireccionValidator extends ObjectValidator {
     }
 
     private void ValidObject() {
-        if(direccion.getCalle().equals("")){
+        if(direccion.getCalle() == null || direccion.getCalle().isEmpty()){
             super.isValid = false;
-            super.message += "Ingrese una calle";
+            super.message += "- Ingrese una calle \n";
         } if(direccion.getNumero() == null || direccion.getNumero() == 0){
             super.isValid = false;
-            super.message += "Ingrese un número de casa o departamento.";
+            super.message += "- Ingrese un número de casa o departamento. \n";
         }        
     }       
 }

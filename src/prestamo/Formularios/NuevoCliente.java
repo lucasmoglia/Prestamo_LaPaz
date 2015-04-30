@@ -6,9 +6,8 @@
 
 package prestamo.Formularios;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.xml.validation.Validator;
 import prestamo.Colaboradores.NuevoClienteColaborador;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Direccion;
@@ -25,11 +24,18 @@ public class NuevoCliente extends javax.swing.JFrame {
      * Creates new form NuevoCliente
      */
     private NuevoClienteColaborador colaborador = new NuevoClienteColaborador();
-    Garante garante;
+    private Garante garante;
+    private int idCliente;
     
     public NuevoCliente() {
         initComponents();
         setDatosIniciales();
+    }
+    
+    public NuevoCliente(int idCliente) {
+        initComponents();
+        setDatosIniciales();        
+        setClienteFormulario(idCliente);
     }
 
     /**
@@ -631,7 +637,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void btnGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaranteActionPerformed
-        ObjectToForm();
+        ObjectGaranteToForm();
         jdGarante.setVisible(true);
     }//GEN-LAST:event_btnGaranteActionPerformed
 
@@ -776,7 +782,12 @@ public class NuevoCliente extends javax.swing.JFrame {
     }
 
     private Cliente getClienteFormulario() {
-        Cliente c = new Cliente();      
+        Cliente c = null;
+        if(idCliente == 0)
+            c = new Cliente();      
+        else
+            c = (Cliente)colaborador.GetClienteById(idCliente);
+            
         // Datos generales del cliente
         c.setNombre(txtNombreCliente.getText());
         c.setApellido(txtApellidoCliente.getText());
@@ -809,7 +820,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         garante.setDireccion(dirGarante);
     }
 
-    private void ObjectToForm() {
+    private void ObjectGaranteToForm() {
         if(garante != null){
             txtNombreGarante.setText(garante.getNombre());
             txtApellidoGarante.setText(garante.getApellido());
@@ -819,5 +830,35 @@ public class NuevoCliente extends javax.swing.JFrame {
             txtPisoGarante.setText(direccion.getPiso());
             txtDepartamentoGarante.setText(direccion.getDepartamento());
         }
+    }
+
+    private void setClienteFormulario(int idCliente) {
+        this.idCliente = idCliente;        
+        ObjectClienteToForm((Cliente)colaborador.GetClienteById(idCliente));
+        btnGarante.setText("Modificar Garante");
+    }
+    
+    private void ObjectClienteToForm(Cliente c){
+        txtNombreCliente.setText(c.getNombre());
+        txtApellidoCliente.setText(c.getApellido());
+        txtNacionalidad.setText(c.getNacionalidad());
+        
+        ddlTipodocumento.setSelectedItem(Commons.getItemByKey(c.getTipoDocumento().getId(), ddlTipodocumento));
+        txtDocCliente.setText(c.getNumeroDocumento().toString());        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(c.getFechaNacimiento());
+        Integer anio = cal.get(Calendar.YEAR);
+        Integer mes = cal.get(Calendar.MONTH)+1;
+        Integer dia = cal.get(Calendar.DAY_OF_MONTH);
+        ddlDiaNacimiento.setSelectedItem(dia.toString());
+        ddlMesNacimiento.setSelectedItem(mes.toString());
+        ddlAnioNacimiento.setSelectedItem(Commons.getItemByKey(anio, ddlAnioNacimiento));
+        txtTelefono.setText(c.getTelefono());
+        Direccion direccion = c.getDireccion();
+        txtDomicilio.setText(direccion.getCalle());
+        txtNumero.setText(direccion.getNumero().toString());
+        txtCodigoPostal.setText(direccion.getCodigoPostal());
+        garante = c.getGarante();
+        ObjectGaranteToForm();        
     }
 }

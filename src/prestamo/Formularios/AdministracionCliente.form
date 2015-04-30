@@ -30,7 +30,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="pnlAdministracionClienteForm" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="525" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,12 +58,6 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="btnModificarCliente" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnNuevoCliente" min="-2" pref="111" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -79,13 +73,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="224" max="-2" attributes="0"/>
-                  <EmptySpace pref="81" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnNuevoCliente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="btnModificarCliente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="286" max="-2" attributes="0"/>
+                  <EmptySpace pref="65" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,14 +98,12 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtClientesMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnNuevoCliente">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nuevo Cliente"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -168,11 +155,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnModificarCliente">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Modificar Cliente"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

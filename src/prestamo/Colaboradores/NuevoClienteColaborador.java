@@ -15,10 +15,12 @@ import prestamo.Datos.ClienteHelper;
 import prestamo.Datos.TipoDocumentoHelper;
 import prestamo.Formularios.ComboItem;
 import prestamo.Modelo.Cliente;
-import prestamo.Modelo.Persona;
+import prestamo.Modelo.Garante;
 import prestamo.Modelo.TipoDocumento;
+import prestamo.Modelo.Validadores.ClienteValidator;
+import prestamo.Modelo.Validadores.DireccionValidator;
+import prestamo.Modelo.Validadores.GaranteValidator;
 import prestamo.Modelo.Validadores.ObjectValidator;
-import prestamo.Modelo.Validadores.PersonaValidador;
 
 /**
  *
@@ -28,7 +30,9 @@ public class NuevoClienteColaborador {
     
     private final TipoDocumentoHelper documentoHelper = new TipoDocumentoHelper();
     private final ClienteHelper clienteHelper = new ClienteHelper();
-    private PersonaValidador personaValidator;
+    private ClienteValidator clienteValidator;
+    private GaranteValidator garanteValidator;
+    private DireccionValidator direccionValidator;
     
     public NuevoClienteColaborador(){}
     
@@ -79,16 +83,24 @@ public class NuevoClienteColaborador {
     
     public ObjectValidator isValidCliente(Cliente c) {
         ObjectValidator resultado = new ObjectValidator();
-        personaValidator = new PersonaValidador((Persona)c);
+        clienteValidator = new ClienteValidator(c);
+        garanteValidator = new GaranteValidator(c.getGarante() != null ? c.getGarante() : new Garante());
+        direccionValidator = new DireccionValidator(c.getDireccion());
         boolean isValid = true;
         String message = "Por favor corrija los siguientes errores: \n" ;        
-        isValid = personaValidator.isIsValid();
+        isValid = clienteValidator.isIsValid() && garanteValidator.isIsValid() && direccionValidator.isIsValid();
         if(!isValid){
-            message += personaValidator.getMessage();
+            message += clienteValidator.getMessage();
+            message += garanteValidator.getMessage();
+            message += direccionValidator.getMessage();
         }
             
         resultado.setIsValid(isValid);
         resultado.setMessage(message);
         return resultado;
+    }
+
+    public Cliente GetClienteById(int idCliente) {
+        return (Cliente)clienteHelper.GetClienteById(idCliente);
     }
 }

@@ -21,4 +21,14 @@ public class Commons {
             combo.addItem(c);
         }
     }
+    
+    public static ComboItem getItemByKey(Object object, JComboBox combo){
+        for (int i = 0; i < combo.getModel().getSize(); i++) {
+            ComboItem item = (ComboItem)combo.getModel().getElementAt(i);
+            if(item.getKey().equals(object.toString())){
+               return item;
+            }
+        }
+        return null;
+    }        
 }

@@ -55,6 +55,11 @@ public class ClienteHelper extends Helper{
             System.out.println(ex);
         }
     }
+    
+    public Cliente GetClienteById(int idCliente) {
+        Cliente cliente = (Cliente)this.GetById(idCliente, Cliente.class);
+        return cliente;
+    }
     /*public void InspectObject(Object object){
         Class clase = object.getClass();
         Field[] atributos  = clase.getDeclaredFields();
@@ -68,4 +73,6 @@ public class ClienteHelper extends Helper{
         System.out.println(asdf);
         
     }*/
+
+
 }
