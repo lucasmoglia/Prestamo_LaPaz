@@ -25,15 +25,18 @@ public class Cliente extends Persona  {
      private String ocupacion;
      private Garante garante;
      private Set<Conocido> conocidos = new HashSet<>();
+     private Set<Prestamo> prestamos = new HashSet<>();
 
     public Cliente() {
     }
 
-    public Cliente(String apellido, String nombre, Integer numeroDocumento, TipoDocumento tipoDocumento, String ocupacion, Direccion direccion, Garante garante, Set<Conocido>conocidos ) {
+    public Cliente(String apellido, String nombre, Integer numeroDocumento, TipoDocumento tipoDocumento, String ocupacion,
+            Direccion direccion, Garante garante, Set<Conocido>conocidos, Set<Prestamo>prestamos ) {
        super(apellido, nombre, numeroDocumento, tipoDocumento, direccion);        
        this.ocupacion = ocupacion;
        this.garante = garante;
        this.conocidos = conocidos;
+       this.prestamos = prestamos;
     }
 
     
@@ -63,5 +66,14 @@ public class Cliente extends Persona  {
     
     public void setConocidos(Set<Conocido> conocidos){
         this.conocidos = conocidos;
+    }
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+    public Set<Prestamo> getPrestamos(){
+        return this.prestamos;
+    }
+    
+    public void setPrestamos(Set<Prestamo> prestamos){
+        this.prestamos = prestamos;
     }
 }
