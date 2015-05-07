@@ -7,8 +7,11 @@
 package prestamo.Formularios;
 
 import java.math.BigDecimal;
+import javax.swing.JOptionPane;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
 import prestamo.Modelo.Prestamo;
+import prestamo.Modelo.Validadores.ObjectValidator;
+import prestamo.Modelo.Validadores.PrestamoValidator;
 
 /**
  *
@@ -295,13 +298,22 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
     private void savePrestamo() {
         Prestamo prestamo = getPrestamoFormulario();
+        ObjectValidator prestamoValidator = new PrestamoValidator(prestamo);
+        String message = "Por favor corrija los siguientes errores: \n";
+        if(prestamoValidator.isIsValid())
+            colaborador.Save(prestamo);
+        else{
+            message += prestamoValidator.getMessage();
+            JOptionPane.showMessageDialog(rootPane, message, "Mensaje de Error", 1);
+        }
+            
         colaborador.Save(prestamo);
     }
 
     private Prestamo getPrestamoFormulario() {
         Prestamo p = new Prestamo();
-        p.setMontoTotal(new BigDecimal(txtMontoPrestamo.getText()));
-        p.setInteres(new BigDecimal(txtTasaInteres.getText()));
+        p.setMontoTotal(!txtMontoPrestamo.getText().isEmpty() ? new BigDecimal(txtMontoPrestamo.getText()) : BigDecimal.ZERO);
+        p.setInteres(!txtTasaInteres.getText().isEmpty() ? new BigDecimal(txtTasaInteres.getText()) : BigDecimal.ZERO);
         p.setCuotas(colaborador.getListaCuotasSet());
         p.setCliente(colaborador.getClienteById(((ComboItem)ddlClientes.getSelectedItem()).getKey()));
         return p;

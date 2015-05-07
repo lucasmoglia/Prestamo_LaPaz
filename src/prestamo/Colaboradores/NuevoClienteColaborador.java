@@ -21,6 +21,7 @@ import prestamo.Modelo.Validadores.ClienteValidator;
 import prestamo.Modelo.Validadores.DireccionValidator;
 import prestamo.Modelo.Validadores.GaranteValidator;
 import prestamo.Modelo.Validadores.ObjectValidator;
+import prestamo.Modelo.Validadores.PersonaValidator;
 
 /**
  *
@@ -33,6 +34,7 @@ public class NuevoClienteColaborador {
     private ClienteValidator clienteValidator;
     private GaranteValidator garanteValidator;
     private DireccionValidator direccionValidator;
+    private PersonaValidator personaValidator;
     
     public NuevoClienteColaborador(){}
     

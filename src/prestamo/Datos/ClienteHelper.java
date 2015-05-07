@@ -29,6 +29,7 @@ public class ClienteHelper extends Helper{
         return clientes;        
     }
     
+    @SuppressWarnings("null")
     public void SaveCliente(Cliente cliente){
         Direccion direccion = cliente.getDireccion();
         Garante garante = cliente.getGarante();
