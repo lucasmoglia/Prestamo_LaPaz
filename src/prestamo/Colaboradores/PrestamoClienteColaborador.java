@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import prestamo.Datos.ClienteHelper;
@@ -90,6 +88,7 @@ public class PrestamoClienteColaborador {
     public List<ComboItem> getClientes(){
         List<ComboItem> comboItemList = new ArrayList<>();
         try{
+            comboItemList.add(new ComboItem(String.valueOf(-1), "Seleccione un Cliente"));
             for(Cliente c : clienteHelper.GeAllClientes()){
                  comboItemList.add(new ComboItem(String.valueOf(c.getId()), getFullName(c)));
              }
