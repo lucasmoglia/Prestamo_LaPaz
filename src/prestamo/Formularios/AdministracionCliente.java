@@ -5,9 +5,6 @@
  */
 
 package prestamo.Formularios;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import prestamo.Colaboradores.AdministracionClienteColaborador;
 /**
  *
@@ -15,7 +12,7 @@ import prestamo.Colaboradores.AdministracionClienteColaborador;
  */
 public class AdministracionCliente extends javax.swing.JFrame {
     private AdministracionClienteColaborador colaborador;
-    private int idCliente;
+    private int idCliente = -1;
 
     public int getIdCliente() {
         return idCliente;
@@ -140,7 +137,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
 
     private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
         Integer selectedRow = jtClientes.getSelectedRow();
-        if (selectedRow !=null){
+        if (selectedRow != null){
            idCliente = Integer.parseInt(jtClientes.getValueAt(selectedRow, 0).toString());        
         }
     }//GEN-LAST:event_jtClientesMouseClicked

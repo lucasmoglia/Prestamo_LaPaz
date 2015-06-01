@@ -6,10 +6,13 @@
 
 package prestamo.Formularios;
 
+import java.awt.Color;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
 import prestamo.Modelo.Prestamo;
+import prestamo.Modelo.Validadores.CalculoCuotaValidator;
 import prestamo.Modelo.Validadores.ObjectValidator;
 import prestamo.Modelo.Validadores.PrestamoValidator;
 
@@ -53,6 +56,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
         ddlClientes = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         btnCrearPrestamo = new javax.swing.JButton();
+        lblMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(897, 558));
@@ -126,20 +130,23 @@ public class PrestamoCliente extends javax.swing.JFrame {
             }
         });
 
+        lblMensaje.setText("!");
+
         javax.swing.GroupLayout pnlPrestamoClienteLayout = new javax.swing.GroupLayout(pnlPrestamoCliente);
         pnlPrestamoCliente.setLayout(pnlPrestamoClienteLayout);
         pnlPrestamoClienteLayout.setHorizontalGroup(
             pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrestamoClienteLayout.createSequentialGroup()
                 .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCrearPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlPrestamoClienteLayout.createSequentialGroup()
+                                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCrearPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPrestamoClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -152,7 +159,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
                                 .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(ddlClientes, 0, 185, Short.MAX_VALUE)
                                     .addComponent(txtMontoPrestamo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                                 .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrestamoClienteLayout.createSequentialGroup()
                                         .addComponent(jLabel4)
@@ -197,32 +204,45 @@ public class PrestamoCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCrearPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(417, Short.MAX_VALUE))
+                .addGroup(pnlPrestamoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMensaje))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrestamoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)
+            .addComponent(pnlPrestamoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrestamoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlPrestamoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularCuotasActionPerformed
-        colaborador.reiniciarCalculo();
-        prestamo.Math math = colaborador.getMath();
-        math.setInteresTaza(new BigDecimal(this.txtTasaInteres.getText()));
-        math.setValorActual(new BigDecimal(this.txtMontoPrestamo.getText()));
-        math.setPeriodos(new BigDecimal(ddlCuotas.getSelectedItem().toString()));
-        jtCuotas.setVisible(true);
-        jtCuotas.setModel(colaborador.getModel());        
+        Prestamo prestamo = getPrestamoFormulario();
+        ObjectValidator calculoCuotaValidator = new CalculoCuotaValidator(prestamo);
+        String message = "Por favor corrija los siguientes errores: \n";
+        if(calculoCuotaValidator.isIsValid()){     
+            colaborador.reiniciarCalculo();
+            prestamo.Math math = colaborador.getMath();
+            math.setInteresTaza(new BigDecimal(this.txtTasaInteres.getText()));
+            math.setValorActual(new BigDecimal(this.txtMontoPrestamo.getText()));
+            math.setPeriodos(new BigDecimal(ddlCuotas.getSelectedItem().toString()));
+            jtCuotas.setVisible(true);
+            jtCuotas.setModel(colaborador.getModel());  
+        }else{
+            message += calculoCuotaValidator.getMessage();
+            JOptionPane.showMessageDialog(rootPane, message, "Mensaje de Error", 1);
+        }
+      
     }//GEN-LAST:event_btnCalcularCuotasActionPerformed
 
     private void btnCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPrestamoActionPerformed
@@ -281,6 +301,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jtCuotas;
+    private javax.swing.JLabel lblMensaje;
     public javax.swing.JPanel pnlPrestamoCliente;
     private javax.swing.JTextField txtMontoPrestamo;
     private javax.swing.JTextField txtTasaInteres;
@@ -288,7 +309,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
     private void setDatosiniciales() {
         colaborador = new PrestamoClienteColaborador();        
-        jtCuotas.setVisible(false);
+        jtCuotas.setVisible(false);        
         fillCombo();
     }
 
@@ -296,18 +317,24 @@ public class PrestamoCliente extends javax.swing.JFrame {
         Commons.loadCombo(ddlClientes, colaborador.getClientes());
     }
 
+    @SuppressWarnings("empty-statement")
     private void savePrestamo() {
         Prestamo prestamo = getPrestamoFormulario();
         ObjectValidator prestamoValidator = new PrestamoValidator(prestamo);
         String message = "Por favor corrija los siguientes errores: \n";
-        if(prestamoValidator.isIsValid())
-            colaborador.Save(prestamo);
-        else{
+        if(prestamoValidator.isIsValid()){
+            if(colaborador.Save(prestamo)){
+                lblMensaje.setText("Se Creo el préstamo con éxito");
+                lblMensaje.setForeground(new Color(0, 153, 51));
+                CleanForm();
+            } else{
+                lblMensaje.setText("No se pudo crear el préstamo. Intentelo otra vez");
+                lblMensaje.setForeground(Color.red);  
+            }
+        }else{
             message += prestamoValidator.getMessage();
             JOptionPane.showMessageDialog(rootPane, message, "Mensaje de Error", 1);
-        }
-            
-        colaborador.Save(prestamo);
+        }    
     }
 
     private Prestamo getPrestamoFormulario() {
@@ -317,5 +344,13 @@ public class PrestamoCliente extends javax.swing.JFrame {
         p.setCuotas(colaborador.getListaCuotasSet());
         p.setCliente(colaborador.getClienteById(((ComboItem)ddlClientes.getSelectedItem()).getKey()));
         return p;
+    }
+
+    private void CleanForm() {
+        txtMontoPrestamo.setText("");
+        txtTasaInteres.setText("");
+        ddlClientes.setSelectedIndex(0);
+        ddlClientes.setSelectedIndex(0);
+        jtCuotas.setModel(new DefaultTableModel());
     }
 }

@@ -28,15 +28,16 @@ import javax.persistence.TemporalType;
 public class Persona  implements java.io.Serializable {
 
 
-     private int id;
-     protected String apellido;
-     protected String nombre;
-     private Integer numeroDocumento;
-     private TipoDocumento tipoDocumento;
-     private Direccion direccion;
-     private Date fechaNacimiento;
-     private String nacionalidad;
-     private String telefono;
+    private int id;
+    protected String apellido;
+    protected String nombre;
+    private Integer numeroDocumento;
+    private TipoDocumento tipoDocumento;
+    private Direccion direccion;
+    private Date fechaNacimiento;
+    private String nacionalidad;
+    private String telefono;
+    private String celular;
 
     public Persona() {
     }
@@ -136,5 +137,14 @@ public class Persona  implements java.io.Serializable {
     
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+    
+    @Column(name="celular")
+    public String getCelular() {
+        return this.celular;
+    }
+    
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 }

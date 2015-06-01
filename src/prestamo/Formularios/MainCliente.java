@@ -6,6 +6,7 @@
 
 package prestamo.Formularios;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -168,9 +169,13 @@ public class MainCliente extends javax.swing.JFrame {
 
     private void btnModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClienteActionPerformed
         int idCliente = this.administracionCliente.getIdCliente();
-        NuevoCliente nuevocliente = new NuevoCliente(idCliente);
-        addElement(nuevocliente.pnlAdministracionCliente); 
-        jPanel2.setVisible(false);
+        if(idCliente != -1){
+            NuevoCliente nuevocliente = new NuevoCliente(idCliente);
+            addElement(nuevocliente.pnlAdministracionCliente); 
+            jPanel2.setVisible(false);
+        } else              
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un Cliente", "Mensaje de Error", 1);
+        
         
     }//GEN-LAST:event_btnModificarClienteActionPerformed
 

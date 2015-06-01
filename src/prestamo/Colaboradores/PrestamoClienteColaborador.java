@@ -98,11 +98,13 @@ public class PrestamoClienteColaborador {
         }
     }
     
-    public void Save(Prestamo prestamo) {
+    public boolean Save(Prestamo prestamo) {
         try{
             prestamoHelper.SavePrestamo(prestamo);
+            return true;
         }catch(Exception e){
             System.out.println(e);
+            return false;
         }
     }
 

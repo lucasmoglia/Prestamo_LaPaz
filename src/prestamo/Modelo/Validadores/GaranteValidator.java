@@ -5,15 +5,17 @@
  */
 package prestamo.Modelo.Validadores;
 
-import prestamo.Modelo.Persona;
+import prestamo.Modelo.Garante;
 
 /**
  *
  * @author cacarapi
  */
 public class GaranteValidator extends PersonaValidator{
-
-    public GaranteValidator(Persona persona) {
+    
+    private final Garante garante;
+    public GaranteValidator(Garante persona) {
         super(persona);
-    }        
+        garante = persona;
+    }   
 }

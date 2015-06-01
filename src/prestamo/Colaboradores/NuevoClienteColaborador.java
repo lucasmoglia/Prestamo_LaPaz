@@ -11,18 +11,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
+import javax.swing.DefaultListModel;
 import prestamo.Datos.ClienteHelper;
 import prestamo.Datos.TipoDocumentoHelper;
 import prestamo.Formularios.ComboItem;
 import prestamo.Modelo.Cliente;
+import prestamo.Modelo.Conocido;
 import prestamo.Modelo.Garante;
 import prestamo.Modelo.TipoDocumento;
 import prestamo.Modelo.Validadores.ClienteValidator;
 import prestamo.Modelo.Validadores.DireccionValidator;
 import prestamo.Modelo.Validadores.GaranteValidator;
 import prestamo.Modelo.Validadores.ObjectValidator;
-import prestamo.Modelo.Validadores.PersonaValidator;
-
 /**
  *
  * @author Elizabeth
@@ -34,7 +35,7 @@ public class NuevoClienteColaborador {
     private ClienteValidator clienteValidator;
     private GaranteValidator garanteValidator;
     private DireccionValidator direccionValidator;
-    private PersonaValidator personaValidator;
+    private final DefaultListModel model = new DefaultListModel();
     
     public NuevoClienteColaborador(){}
     
@@ -73,11 +74,13 @@ public class NuevoClienteColaborador {
         return cal.getTime();
     }
 
-    public void Save(Cliente c) {
+    public boolean Save(Cliente c) {
         try{
             clienteHelper.SaveCliente(c);
+            return true;
         }catch(Exception e){
             System.out.println(e);
+            return false;
         }
     }
     
@@ -104,5 +107,24 @@ public class NuevoClienteColaborador {
 
     public Cliente GetClienteById(int idCliente) {
         return (Cliente)clienteHelper.GetClienteById(idCliente);
+    }
+
+    public DefaultListModel getModelConocidos(List<Conocido> conocidos) {
+        for(Conocido c : conocidos)
+            model.add(c.getId(), getNombreCompletoYTelefono(c));
+        
+        return model;
+    }
+    
+    public Set getConocidosCliente(List<Conocido> conocidos){
+        for(Conocido c : conocidos){
+            
+        }
+        return null;
+    }
+
+    private Object getNombreCompletoYTelefono(Conocido c) {
+        String resultado = c.getApellido()+", "+c.getNombre()+"  [ "+c.getTelefono()+" ] ";
+        return resultado;
     }
 }

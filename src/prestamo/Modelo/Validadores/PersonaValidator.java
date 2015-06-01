@@ -27,18 +27,14 @@ public class PersonaValidator extends ObjectValidator {
         }if(persona.getNombre() == null || persona.getNombre().isEmpty()){
             super.isValid = false;
             super.message += "- Ingrese Nombre del " + entidad +" \n";
-        }if(persona.getNumeroDocumento() == null || persona.getNumeroDocumento().equals(0)){
-            super.isValid = false;
-            super.message += "- Ingrese un número de documento para el "+entidad+" \n";
-        }if(persona.getTipoDocumento() == null){
-            super.isValid = false;
-            super.message += "- Ingrese un tipo de documento para el " + entidad + "\n";
-        }      
+        }   
     }    
 
     private String getNombreEntidad() {
         //case()
-        String[]nombreClase = persona.getClass().getTypeName().split("\\.");               
-        return nombreClase[nombreClase.length-1]; 
+        String[]nombreTipoDeClase = persona.getClass().getTypeName().split("\\.");   
+        String nombreClaseAux = nombreTipoDeClase[nombreTipoDeClase.length-1];
+        String[]nombreClase = nombreClaseAux.split("_");
+        return nombreClase[0]; 
     }
 }
