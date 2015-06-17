@@ -4,6 +4,7 @@ package prestamo.Modelo;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,6 +25,7 @@ public class Cliente extends Persona  {
 
      private String ocupacion;
      private Garante garante;
+     private String codigo;
      private Set<Conocido> conocidos = new HashSet<>();
      private Set<Prestamo> prestamos = new HashSet<>();
 
@@ -59,7 +61,7 @@ public class Cliente extends Persona  {
         this.garante = garante;
     }
     
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="cliente",cascade= CascadeType.ALL)
     public Set<Conocido> getConocidos(){
         return this.conocidos;
     }
@@ -75,5 +77,14 @@ public class Cliente extends Persona  {
     
     public void setPrestamos(Set<Prestamo> prestamos){
         this.prestamos = prestamos;
+    }
+
+    @Column(name="codigo")
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

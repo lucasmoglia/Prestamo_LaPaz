@@ -5,8 +5,6 @@
  */
 
 package prestamo.Datos;
-
-import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Cuota;
 import prestamo.Modelo.Prestamo;
 

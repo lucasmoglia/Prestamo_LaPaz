@@ -135,6 +135,7 @@ public class AdministracionCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @SuppressWarnings("null")
     private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
         Integer selectedRow = jtClientes.getSelectedRow();
         if (selectedRow != null){

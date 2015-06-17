@@ -9,7 +9,10 @@ package prestamo.Colaboradores;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultListModel;
@@ -74,13 +77,13 @@ public class NuevoClienteColaborador {
         return cal.getTime();
     }
 
-    public boolean Save(Cliente c) {
+    public Integer Save(Cliente c) {
         try{
-            clienteHelper.SaveCliente(c);
-            return true;
+            int idCliente = clienteHelper.SaveCliente(c);            
+            return idCliente;
         }catch(Exception e){
             System.out.println(e);
-            return false;
+            return null;
         }
     }
     
@@ -108,23 +111,33 @@ public class NuevoClienteColaborador {
     public Cliente GetClienteById(int idCliente) {
         return (Cliente)clienteHelper.GetClienteById(idCliente);
     }
+    
+    public Conocido GetConocidoById(int idConocido){
+        return (Conocido)clienteHelper.GetById(idConocido, Conocido.class);
+    }
 
-    public DefaultListModel getModelConocidos(List<Conocido> conocidos) {
-        for(Conocido c : conocidos)
-            model.add(c.getId(), getNombreCompletoYTelefono(c));
-        
+    public DefaultListModel getModelConocidos(String item) {                
+        model.addElement(item);        
         return model;
     }
     
-    public Set getConocidosCliente(List<Conocido> conocidos){
-        for(Conocido c : conocidos){
-            
+    public Set getConocidosCliente(Hashtable conocidosHash){
+        Set<Conocido> conocidos = new HashSet<>();
+        Enumeration e = conocidosHash.elements();
+        Conocido conocido;
+        while( e.hasMoreElements() ){
+          conocido = (Conocido)e.nextElement();
+          conocidos.add(conocido);
         }
-        return null;
+        return conocidos;
     }
 
-    private Object getNombreCompletoYTelefono(Conocido c) {
+    public String getNombreCompletoYTelefono(Conocido c) {
         String resultado = c.getApellido()+", "+c.getNombre()+"  [ "+c.getTelefono()+" ] ";
         return resultado;
+    }
+
+    public void setModelLstOtrosContactos(Integer selectedIndexConocido, String item) {
+        model.setElementAt(item, selectedIndexConocido);
     }
 }

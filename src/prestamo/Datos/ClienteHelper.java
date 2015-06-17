@@ -9,6 +9,7 @@ package prestamo.Datos;
 import java.util.ArrayList;
 import java.util.List;
 import prestamo.Modelo.Cliente;
+import prestamo.Modelo.Conocido;
 import prestamo.Modelo.Direccion;
 import prestamo.Modelo.Garante;
 
@@ -30,7 +31,7 @@ public class ClienteHelper extends Helper{
     }
     
     @SuppressWarnings("null")
-    public void SaveCliente(Cliente cliente){
+    public Integer SaveCliente(Cliente cliente){
         Direccion direccion = cliente.getDireccion();
         Garante garante = cliente.getGarante();
         Direccion direccionGarante = garante.getDireccion();
@@ -49,16 +50,29 @@ public class ClienteHelper extends Helper{
                 cliente.setGarante(garante);
             }            
             
-            session.save(cliente);
-            session.getTransaction().commit();
+            for(Conocido c : cliente.getConocidos()){                
+                if(c.getId() != 0){
+                    session.update(c);
+                }
+                else{
+                    c.setCliente(cliente);
+                    session.save(c);
+                }
+            }
+            
+            Integer idCliente = (int)session.save(cliente);
+            session.getTransaction().commit();            
+            return idCliente;
         }catch (Exception ex){
             session.getTransaction().rollback();
             System.out.println(ex);
+            return null;
         }
     }
-    
-    public Cliente GetClienteById(int idCliente) {
-        Cliente cliente = (Cliente)this.GetById(idCliente, Cliente.class);
+               
+    public Cliente GetClienteById(int idCliente) {        
+        Cliente cliente = (Cliente)this.GetById(idCliente, Cliente.class);      
+        session.refresh(cliente);
         return cliente;
     }
     /*public void InspectObject(Object object){

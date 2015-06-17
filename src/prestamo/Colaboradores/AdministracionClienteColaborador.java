@@ -57,7 +57,7 @@ public class AdministracionClienteColaborador {
     private Vector objectToVector(Cliente c) {
         Vector v = new Vector();
         v.add(c.getId());
-        v.add("A definir");
+        v.add(c.getCodigo());
         v.add(getFullName(c));
         v.add(c.getNacionalidad());
         v.add(c.getTelefono());
