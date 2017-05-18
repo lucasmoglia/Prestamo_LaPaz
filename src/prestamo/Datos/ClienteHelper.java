@@ -24,10 +24,18 @@ public class ClienteHelper extends Helper{
     public ClienteHelper() {
         clientes = new ArrayList<>();   
     }
+
     public List<Cliente> GeAllClientes(){
         String hql = "from Cliente";
         clientes = super.GetDataList(hql);
         return clientes;        
+    }
+    
+    public List<Cliente> GetClienteBySearch(String search) {
+        String hql = "from Cliente where LOWER(nombre) like CONCAT('%', :parameter, '%') or "
+                + "LOWER(apellido) like CONCAT('%', :parameter, '%')";
+        clientes = super.GetDataListWithParameter(hql, search.toLowerCase());
+        return clientes;
     }
     
     @SuppressWarnings("null")
@@ -48,16 +56,11 @@ public class ClienteHelper extends Helper{
                 }
                 session.save(garante);
                 cliente.setGarante(garante);
-            }            
-            
+            }
+            //deleteConocidos(session, cliente.getId());           
             for(Conocido c : cliente.getConocidos()){                
-                if(c.getId() != 0){
-                    session.update(c);
-                }
-                else{
-                    c.setCliente(cliente);
-                    session.save(c);
-                }
+                c.setCliente(cliente);
+                session.save(c);                
             }
             
             Integer idCliente = (int)session.save(cliente);
@@ -90,4 +93,25 @@ public class ClienteHelper extends Helper{
     }*/
 
 
+    public void DeleteConocidos(List<Integer> Conocidos) {
+        try{
+            session.beginTransaction();
+            
+            for(int c : Conocidos){
+                Conocido conocido = (Conocido)this.GetById(c , Conocido.class);
+                session.delete(conocido);                
+            }
+            
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+        }
+        
+        /*Cliente cliente = (Cliente)this.GetById(id, Cliente.class);
+        
+        for(Conocido c : cliente.getConocidos()){
+            Conocido co = (Conocido)this.GetById(c.getId(), Conocido.class);
+            session.delete(co);
+        }*/
+    }
 }

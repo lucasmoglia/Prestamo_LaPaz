@@ -32,6 +32,20 @@ public class Helper {
             return resultList;
         }                
     }
+    
+    protected List GetDataListWithParameter(String hql, String parameter) {
+        List resultList = new ArrayList();
+        try {
+            Query q = (Query) session.createQuery(hql)
+            .setString("parameter", parameter);
+            resultList = q.list();
+            return resultList;
+            
+        } catch (HibernateException he) {
+            resultList.add(he);
+            return resultList;
+        }                
+    }
      
     public Object GetById(int id, Class clase){
         Object object = null;

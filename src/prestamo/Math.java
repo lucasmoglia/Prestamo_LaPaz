@@ -22,7 +22,7 @@ public final class Math {
     private BigDecimal t1 = cero; // Primera Cuota de amortización
     private BigDecimal tp = cero; // Cuota de amortización en Periodo indicado
     private BigDecimal tap = cero; // Total Amortizado en Período indicado
-    private BigDecimal ipp = cero; // Intereses cpbrados primer período
+    private BigDecimal ipp = cero; // Intereses cobrados primer período
     private BigDecimal ip = cero; // Interes expresado en porcentaje
     private BigDecimal ipi = cero; // Interes en periodos intermedios
     

@@ -8,6 +8,8 @@ package prestamo.Formularios;
 
 import java.awt.Color;
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
@@ -59,7 +61,6 @@ public class PrestamoCliente extends javax.swing.JFrame {
         lblMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(897, 558));
 
         pnlPrestamoCliente.setBackground(new java.awt.Color(255, 255, 255));
         pnlPrestamoCliente.setPreferredSize(new java.awt.Dimension(897, 558));
@@ -343,6 +344,8 @@ public class PrestamoCliente extends javax.swing.JFrame {
         p.setInteres(!txtTasaInteres.getText().isEmpty() ? new BigDecimal(txtTasaInteres.getText()) : BigDecimal.ZERO);
         p.setCuotas(colaborador.getListaCuotasSet());
         p.setCliente(colaborador.getClienteById(((ComboItem)ddlClientes.getSelectedItem()).getKey()));
+        Calendar calendario = new GregorianCalendar();
+        p.setFechaPrestamo(calendario.getTime());
         return p;
     }
 

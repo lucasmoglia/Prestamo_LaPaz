@@ -7,8 +7,10 @@
 package prestamo.Formularios;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
+import java.util.List;
 import javax.swing.JOptionPane;
 import prestamo.Colaboradores.NuevoClienteColaborador;
 import prestamo.Modelo.Cliente;
@@ -32,6 +34,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     private Hashtable conocidos = new Hashtable<>(); 
     private Integer idCliente;
     private Integer selectedIndexConocido;
+    private List<Integer> conocidosABorrar ;
     
     public NuevoCliente() {
         initComponents();
@@ -695,7 +698,7 @@ public class NuevoCliente extends javax.swing.JFrame {
 
     private void btnAgregarConocidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarConocidoActionPerformed
         Conocido conocido = FormToObjectConocido();                
-        SaveConocido(conocido);
+        SaveConocido(conocido);        
     }//GEN-LAST:event_btnAgregarConocidoActionPerformed
 
     private void lstOtroscontactosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstOtroscontactosMouseClicked
@@ -820,6 +823,7 @@ public class NuevoCliente extends javax.swing.JFrame {
 
     private void setDatosIniciales() {
         colaborador = new NuevoClienteColaborador();
+        conocidosABorrar = new ArrayList<>();
         fillCombos();
         jdGarante.setSize(450,350);
     }
@@ -835,6 +839,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         ObjectValidator validador = colaborador.isValidCliente(c);
         if(validador.isIsValid()){
             idCliente = colaborador.Save(c);
+            colaborador.DeleteConocidos(conocidosABorrar);
             if( idCliente != null){
                 c = colaborador.GetClienteById(idCliente);
                 txtCodigo.setText(c.getCodigo());
@@ -947,10 +952,12 @@ public class NuevoCliente extends javax.swing.JFrame {
                 lstOtroscontactos.setModel(colaborador.getModelConocidos(item));            
             }else{
                 String selectedItem = lstOtroscontactos.getSelectedValue().toString();
-                colaborador.setModelLstOtrosContactos(selectedIndexConocido, item);                                
-                conocido = UpdateConocido(selectedItem);               
-                conocidos.put(item, conocido);                
+                conocidosABorrar.add(selectedIndexConocido);
+                conocidos.remove(selectedItem);
+                conocidos.put(item, conocido);    
+                colaborador.setModelLstOtrosContactos(selectedIndexConocido, item);                  
             }
+            
             CleanFormConocido();
         }else
             JOptionPane.showMessageDialog(rootPane, conocidoValidator.getMessage(), "Mensaje de Error", 1);        

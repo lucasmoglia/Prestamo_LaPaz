@@ -31,6 +31,9 @@ public class PrestamoClienteColaborador {
     private DefaultTableModel model = new DefaultTableModel();
     private final ClienteHelper clienteHelper = new ClienteHelper();
     private final PrestamoHelper prestamoHelper = new PrestamoHelper();
+    private final BigDecimal cero = new BigDecimal("0");  // Constante 0
+    private BigDecimal totalCuota; 
+    private BigDecimal totalInteres;
     
     public PrestamoClienteColaborador(BigDecimal i, BigDecimal v, BigDecimal n){
         math = new prestamo.Math(i, v, n);
@@ -76,11 +79,17 @@ public class PrestamoClienteColaborador {
      * @return the model
      */
     public DefaultTableModel getModel() {
+        totalCuota = cero;
+        totalInteres = cero;
         listaCuotas = listaCuotas.isEmpty() ? getListaCuotas() : listaCuotas;
         definirColumnas(model);
         for(Cuota c : listaCuotas){
             model.addRow(objectToVector(c));
+            totalCuota = totalCuota.add(c.getMonto());
+            totalInteres = totalInteres.add(c.getInteresPeriodo());
         }
+        
+        model.addRow(getTotales());
         
         return model;
     }
@@ -168,5 +177,17 @@ public class PrestamoClienteColaborador {
             list.add(c);
         }
         return list;
+    }
+
+    private Vector getTotales() {
+        Vector v = new Vector();
+        v.add("TOTAL");
+        v.add("");
+        v.add(totalCuota);
+        v.add("");
+        v.add(totalInteres);        
+        v.add("");
+        
+        return v;
     }
 }

@@ -34,6 +34,9 @@ public class MainCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnNuevoCliente = new javax.swing.JButton();
@@ -43,6 +46,14 @@ public class MainCliente extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMIConsultaPrestamo = new javax.swing.JMenuItem();
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(897, 558));
@@ -116,6 +127,18 @@ public class MainCliente extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu4.setText("Prestamo");
+
+        jMIConsultaPrestamo.setText("Consulta de prestamo");
+        jMIConsultaPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConsultaPrestamoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMIConsultaPrestamo);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,7 +151,7 @@ public class MainCliente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -179,6 +202,12 @@ public class MainCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnModificarClienteActionPerformed
 
+    private void jMIConsultaPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaPrestamoActionPerformed
+        ConsultaPrestamo consultaPrestamo = new ConsultaPrestamo();
+        addElement(consultaPrestamo.pnlConsultaPrestamo); 
+        jPanel2.setVisible(false);
+    }//GEN-LAST:event_jMIConsultaPrestamoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,8 +246,13 @@ public class MainCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnNuevoCliente;
+    private javax.swing.JMenuItem jMIConsultaPrestamo;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

@@ -13,6 +13,7 @@ import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultListModel;
@@ -139,5 +140,12 @@ public class NuevoClienteColaborador {
 
     public void setModelLstOtrosContactos(Integer selectedIndexConocido, String item) {
         model.setElementAt(item, selectedIndexConocido);
+    }
+    
+    public void DeleteConocidos(List<Integer> conocidos){
+        Set<Integer> s = new LinkedHashSet<>(conocidos);
+        conocidos.clear();
+        conocidos.addAll(s);
+        clienteHelper.DeleteConocidos(conocidos);
     }
 }

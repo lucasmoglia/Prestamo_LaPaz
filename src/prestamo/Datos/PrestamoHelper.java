@@ -5,6 +5,9 @@
  */
 
 package prestamo.Datos;
+import java.util.List;
+import java.util.Set;
+import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Cuota;
 import prestamo.Modelo.Prestamo;
 
@@ -26,5 +29,10 @@ public class PrestamoHelper extends Helper{
             session.getTransaction().rollback();
             System.out.println(ex);
         }
+    }
+    
+    public Set<Prestamo> GetPrestamosByClienteId(int idCliente){
+       Cliente c =  (Cliente)GetById(idCliente, Cliente.class);
+       return c.getPrestamos();
     }
 }
