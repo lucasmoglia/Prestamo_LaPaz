@@ -854,7 +854,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }
 
     private Cliente getClienteFormulario() {
-        Cliente c = null;
+        Cliente c;
         if(idCliente == null)
             c = new Cliente();      
         else
@@ -865,7 +865,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         c.setApellido(txtApellidoCliente.getText());
         c.setNacionalidad(txtNacionalidad.getText());
         c.setTipoDocumento(colaborador.getTipoDocumentoById(((ComboItem)ddlTipodocumento.getSelectedItem()).getKey()));
-        c.setNumeroDocumento(!txtDocCliente.getText().equals("") ? Integer.parseInt(txtDocCliente.getText()) : 0);
+        c.setNumeroDocumento(!txtDocCliente.getText().trim().equals("") ? Integer.parseInt(txtDocCliente.getText()) : 0);
         c.setFechaNacimiento(colaborador.getDate(ddlDiaNacimiento.getSelectedItem().toString(), 
                                                  ddlMesNacimiento.getSelectedItem().toString(), 
                                                  ddlAnioNacimiento.getSelectedItem().toString()));

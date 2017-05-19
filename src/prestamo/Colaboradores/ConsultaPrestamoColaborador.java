@@ -86,7 +86,7 @@ public class ConsultaPrestamoColaborador {
         v.add(p.getId());
         v.add(p.getMontoTotal());
         v.add(p.getCuotas().size());
-        v.add(p.getFechaPrestamo());
+        v.add(p.FechaPrestamoString());
         
         return v;
     }

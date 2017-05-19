@@ -7,10 +7,15 @@
 package prestamo.Colaboradores;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -168,7 +173,8 @@ public class PrestamoClienteColaborador {
             cuota.setAmortizacion(getMath().GetCuotaAmortizadaPeriodo(periodo));
             cuota.setTotalAmortizado(getMath().GetTotalAmortizado(periodo));
             cuota.setSaldoInicial(getMath().GetSaldoInicialPeriodo(periodo));
-        }        
+        }
+        cuota.setFechaCuota(CalcularFechaCuota(numeroCuota));
         return cuota;
     }
     
@@ -179,7 +185,8 @@ public class PrestamoClienteColaborador {
         v.add(c.getMonto());
         v.add(c.getAmortizacion());
         v.add(c.getInteresPeriodo());        
-        v.add(c.getTotalAmortizado());
+        v.add(c.getTotalAmortizado());        
+        v.add(c.FechaCuotaString());
         
         return v;
     } 
@@ -191,6 +198,7 @@ public class PrestamoClienteColaborador {
         model.addColumn("Reduccion de capital");
         model.addColumn("Interes ");
         model.addColumn("Total Amortizado");
+        model.addColumn("Fecha a Pagar");
     }
 
     public String getFullName(Cliente c) {
@@ -228,5 +236,13 @@ public class PrestamoClienteColaborador {
     public int getMaxNumeroCuota(Set<Cuota> cuotas) {
        Cuota c = Collections.max(cuotas);
        return c.getNumeroCuota();
+    }
+
+    private Date CalcularFechaCuota(int numeroCuota) {
+        int mesSiguiente = numeroCuota -1;
+        Calendar calendario = new GregorianCalendar();
+        calendario.add(Calendar.MONTH, mesSiguiente);
+        Date fecha = calendario.getTime();
+        return fecha;
     }
 }

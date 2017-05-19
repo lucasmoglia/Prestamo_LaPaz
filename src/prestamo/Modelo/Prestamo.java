@@ -1,8 +1,10 @@
 package prestamo.Modelo;
 // Generated 28/07/2014 00:25:40 by Hibernate Tools 3.6.0
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -107,5 +109,16 @@ public class Prestamo  implements java.io.Serializable {
     
     public void setFechaPrestamo(Date fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
+    }
+    
+    public String FechaPrestamoString(){
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy", new Locale("es_ES"));
+        String fechaString = "";
+
+        if(fechaPrestamo != null){
+            fechaString = formateador.format(fechaPrestamo);
+        }
+
+        return fechaString;
     }
 }

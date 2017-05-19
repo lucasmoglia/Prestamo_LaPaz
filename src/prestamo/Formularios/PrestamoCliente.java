@@ -241,7 +241,8 @@ public class PrestamoCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularCuotasActionPerformed
-        Prestamo prestamo = getPrestamoFormulario();
+        lblMensaje.setText("");
+        Prestamo prestamo = getPrestamoFormulario();        
         ObjectValidator calculoCuotaValidator = new CalculoCuotaValidator(prestamo);
         String message = "Por favor corrija los siguientes errores: \n";
         if(calculoCuotaValidator.isIsValid()){     
@@ -249,7 +250,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
             prestamo.Math math = colaborador.getMath();
             math.setInteresTaza(new BigDecimal(this.txtTasaInteres.getText()));
             math.setValorActual(new BigDecimal(this.txtMontoPrestamo.getText()));
-            math.setPeriodos(new BigDecimal(ddlCuotas.getSelectedItem().toString()));
+            math.setPeriodos(new BigDecimal(ddlCuotas.getSelectedItem().toString()));            
             jtCuotas.setVisible(true);
             jtCuotas.setModel(colaborador.getModel());  
         }else{
@@ -363,7 +364,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
         p.setCuotas(colaborador.getListaCuotasSet());
         p.setCliente(colaborador.getClienteById(((ComboItem)ddlClientes.getSelectedItem()).getKey()));
         Calendar calendario = new GregorianCalendar();
-        p.setFechaPrestamo(calendario.getTime());
+        p.setFechaPrestamo(calendario.getTime());       
         return p;
     }
 
