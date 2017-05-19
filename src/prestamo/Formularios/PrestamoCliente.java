@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
+import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Prestamo;
 import prestamo.Modelo.Validadores.CalculoCuotaValidator;
 import prestamo.Modelo.Validadores.ObjectValidator;
@@ -25,10 +26,22 @@ import prestamo.Modelo.Validadores.PrestamoValidator;
 public class PrestamoCliente extends javax.swing.JFrame {
 
     private PrestamoClienteColaborador colaborador;
+    private int idPrestamo;
     
+    public void setIdPrestamo(int idPrestamo){
+        this.idPrestamo = idPrestamo;
+    }
+    
+    //public Listener
     public PrestamoCliente() {
         initComponents();
         setDatosiniciales();
+    }
+    
+    public PrestamoCliente(int idPrestamo){
+        this.idPrestamo = idPrestamo;
+        initComponents();
+        setDatosiniciales();  
     }
 
     /**
@@ -312,6 +325,11 @@ public class PrestamoCliente extends javax.swing.JFrame {
         colaborador = new PrestamoClienteColaborador();        
         jtCuotas.setVisible(false);        
         fillCombo();
+        if(idPrestamo != 0){
+            Prestamo prestamo = colaborador.getPrestamoById(idPrestamo);
+            ObjectToForm(prestamo);
+            DisabledElements();
+        }
     }
 
     private void fillCombo() {
@@ -355,5 +373,27 @@ public class PrestamoCliente extends javax.swing.JFrame {
         ddlClientes.setSelectedIndex(0);
         ddlClientes.setSelectedIndex(0);
         jtCuotas.setModel(new DefaultTableModel());
+    }
+
+    private void ObjectToForm(Prestamo prestamo) {
+        Cliente cliente = prestamo.getCliente();
+        // Creo los items a seleccionar
+        ComboItem item = new ComboItem(String.valueOf(cliente.getId()), "");
+        int nroCuota = colaborador.getMaxNumeroCuota(prestamo.getCuotas());
+        
+        ddlClientes.setSelectedItem(item);
+        ddlCuotas.setSelectedItem(String.valueOf(nroCuota));
+        txtTasaInteres.setText(prestamo.getInteres().toString());
+        txtMontoPrestamo.setText(prestamo.getMontoTotal().toString());
+        jtCuotas.setVisible(true);
+        jtCuotas.setModel(colaborador.getModelForCuotas(prestamo.getCuotas()));
+        
+    }
+
+    private void DisabledElements() {
+        txtMontoPrestamo.setEditable(false);
+        txtTasaInteres.setEditable(false);
+        ddlClientes.setEnabled(false);
+        ddlCuotas.setEnabled(false);
     }
 }

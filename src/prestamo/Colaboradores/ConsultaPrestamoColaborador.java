@@ -14,7 +14,6 @@ import javax.swing.table.TableModel;
 import prestamo.Datos.ClienteHelper;
 import prestamo.Datos.PrestamoHelper;
 import prestamo.Modelo.Cliente;
-import prestamo.Modelo.Cuota;
 import prestamo.Modelo.Prestamo;
 
 /**
@@ -64,6 +63,7 @@ public class ConsultaPrestamoColaborador {
     }
 
     public TableModel GetModelPrestamos(Integer idClienteSeleccionado) {
+        modelTable = new DefaultTableModel();
         Set<Prestamo> prestamos = GetPrestamosByIdCliente(idClienteSeleccionado);
         definirColumnas(modelTable);
         if(!prestamos.isEmpty()){

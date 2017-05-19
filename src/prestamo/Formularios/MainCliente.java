@@ -19,6 +19,9 @@ public class MainCliente extends javax.swing.JFrame {
      * Creates new form MainCliente
      */    
     private AdministracionCliente administracionCliente;
+    private ConsultaPrestamo consultaPrestamo;
+    private int idCliente;
+    
 
     public MainCliente() {
         initComponents();
@@ -41,6 +44,8 @@ public class MainCliente extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnNuevoCliente = new javax.swing.JButton();
         btnModificarCliente = new javax.swing.JButton();
+        btnSeleccionarPrestamo = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -57,7 +62,6 @@ public class MainCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(897, 558));
-        setPreferredSize(new java.awt.Dimension(897, 600));
         setResizable(false);
 
         jPanel1.setLayout(new java.awt.CardLayout());
@@ -78,16 +82,34 @@ public class MainCliente extends javax.swing.JFrame {
             }
         });
 
+        btnSeleccionarPrestamo.setText("Seleccione Prestamo");
+        btnSeleccionarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarPrestamoActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionarPrestamo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModificarCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +117,9 @@ public class MainCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnModificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSeleccionarPrestamo)
+                    .addComponent(btnVolver))
                 .addContainerGap())
         );
 
@@ -175,6 +199,8 @@ public class MainCliente extends javax.swing.JFrame {
         administracionCliente = new AdministracionCliente();
         addElement(administracionCliente.pnlAdministracionClienteForm);  
         jPanel2.setVisible(true);
+        btnSeleccionarPrestamo.setVisible(false);
+        btnVolver.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -203,10 +229,39 @@ public class MainCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarClienteActionPerformed
 
     private void jMIConsultaPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaPrestamoActionPerformed
-        ConsultaPrestamo consultaPrestamo = new ConsultaPrestamo();
+        consultaPrestamo = new ConsultaPrestamo();
         addElement(consultaPrestamo.pnlConsultaPrestamo); 
-        jPanel2.setVisible(false);
+        jPanel2.setVisible(true);
+        btnModificarCliente.setVisible(false);
+        btnNuevoCliente.setVisible(false);
+        btnSeleccionarPrestamo.setVisible(true);
+        btnVolver.setVisible(false);
     }//GEN-LAST:event_jMIConsultaPrestamoActionPerformed
+
+    private void btnSeleccionarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarPrestamoActionPerformed
+        int idPrestamo = consultaPrestamo.getIdPrestamo();
+        idCliente = consultaPrestamo.getIdClienteSeleccionado();
+        if(idPrestamo != -1){
+            PrestamoCliente prestamoCliente = new PrestamoCliente(idPrestamo);
+            addElement(prestamoCliente.pnlPrestamoCliente);
+            jPanel2.setVisible(true);
+            btnSeleccionarPrestamo.setVisible(false);
+            btnVolver.setVisible(true);
+        }
+    }//GEN-LAST:event_btnSeleccionarPrestamoActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        consultaPrestamo = new ConsultaPrestamo(idCliente);        
+        if(consultaPrestamo != null){
+            addElement(consultaPrestamo.pnlConsultaPrestamo);
+            consultaPrestamo.loadPage();
+            btnModificarCliente.setVisible(false);
+            btnNuevoCliente.setVisible(false);
+            btnSeleccionarPrestamo.setVisible(true);
+            btnVolver.setVisible(false);
+            
+        }
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,6 +292,7 @@ public class MainCliente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainCliente().setVisible(true);
             }
@@ -246,6 +302,8 @@ public class MainCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnNuevoCliente;
+    private javax.swing.JButton btnSeleccionarPrestamo;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JMenuItem jMIConsultaPrestamo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

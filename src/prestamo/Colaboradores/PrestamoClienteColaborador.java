@@ -8,6 +8,7 @@ package prestamo.Colaboradores;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -94,6 +95,23 @@ public class PrestamoClienteColaborador {
         return model;
     }
     
+    public DefaultTableModel getModelForCuotas(Set<Cuota> cuotas){        
+        totalCuota = cero;
+        totalInteres = cero;
+        definirColumnas(model);
+        List<Cuota> cuotasList = getListaCuotasArrayList(cuotas);
+        Collections.sort( cuotasList);
+        
+        for(Cuota c : cuotasList){
+            model.addRow(objectToVector(c));
+            totalCuota = totalCuota.add(c.getMonto());
+            totalInteres = totalInteres.add(c.getInteresPeriodo());
+        }
+        
+        model.addRow(getTotales());
+        return model;
+    }
+    
     public List<ComboItem> getClientes(){
         List<ComboItem> comboItemList = new ArrayList<>();
         try{
@@ -120,7 +138,15 @@ public class PrestamoClienteColaborador {
     public Cliente getClienteById(String key) {
         try{
             return (Cliente)clienteHelper.GetById(Integer.parseInt(key), Cliente.class);
-        }catch (Exception e){
+        }catch (NumberFormatException e){
+            return null;
+        }
+    }
+    
+    public Prestamo getPrestamoById(int idPrestamo){
+        try{
+            return (Prestamo)prestamoHelper.GetById(idPrestamo, Prestamo.class);
+        }catch(Exception e){
             return null;
         }
     }
@@ -167,13 +193,21 @@ public class PrestamoClienteColaborador {
         model.addColumn("Total Amortizado");
     }
 
-    private String getFullName(Cliente c) {
+    public String getFullName(Cliente c) {
         return c != null ? c.getApellido() +", "+ c.getNombre(): "";
     }
 
     public Set<Cuota> getListaCuotasSet() {
         Set list = new HashSet();
         for (Cuota c : listaCuotas) {
+            list.add(c);
+        }
+        return list;
+    }
+    
+    private ArrayList getListaCuotasArrayList(Set<Cuota> cuotas){
+        ArrayList list = new ArrayList();
+        for(Cuota c : cuotas){
             list.add(c);
         }
         return list;
@@ -189,5 +223,10 @@ public class PrestamoClienteColaborador {
         v.add("");
         
         return v;
+    }
+
+    public int getMaxNumeroCuota(Set<Cuota> cuotas) {
+       Cuota c = Collections.max(cuotas);
+       return c.getNumeroCuota();
     }
 }

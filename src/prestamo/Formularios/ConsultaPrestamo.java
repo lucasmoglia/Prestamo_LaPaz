@@ -15,17 +15,36 @@ import prestamo.Modelo.Cliente;
  *
  * @author Cesar
  */
-public class ConsultaPrestamo extends javax.swing.JFrame {
+public final class ConsultaPrestamo extends javax.swing.JFrame {
     private ConsultaPrestamoColaborador colaborador;
     private Integer idClienteSeleccionado;
     private Hashtable clientes = new Hashtable<>();
-    private int idCliente; 
+    private int idPrestamo; 
+    
+    public int getIdPrestamo(){
+        return idPrestamo;
+    }
+    
+    public int getIdClienteSeleccionado(){
+        return idClienteSeleccionado;
+    }
+    
+    public void setIdClienteSeleccionado(int idClienteSelecionado){
+        this.idClienteSeleccionado = idClienteSelecionado;
+    }
     /**
      * Creates new form ConsultaPrestamo
      */
     public ConsultaPrestamo() {
         initComponents();
         setDatosIniciales();
+    }
+    
+    public ConsultaPrestamo(int idClienteSeleccionado) {
+        initComponents();
+        setDatosIniciales();
+        this.idClienteSeleccionado = idClienteSeleccionado;
+        loadPage();
     }
 
     /**
@@ -224,7 +243,6 @@ public class ConsultaPrestamo extends javax.swing.JFrame {
         txtCliente.setEditable(false);
         btnBorrarClienteSeleccionado.setVisible(true);
         pnlListaCliente.setVisible(false);
-
     }//GEN-LAST:event_lstClientesMouseClicked
 
     private void txtClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyTyped
@@ -250,7 +268,7 @@ public class ConsultaPrestamo extends javax.swing.JFrame {
     private void jtPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPrestamoMouseClicked
         Integer selectedRow = jtPrestamo.getSelectedRow();
         if (selectedRow != null){
-            idCliente = Integer.parseInt(jtPrestamo.getValueAt(selectedRow, 0).toString());
+            idPrestamo = Integer.parseInt(jtPrestamo.getValueAt(selectedRow, 0).toString());
         }
     }//GEN-LAST:event_jtPrestamoMouseClicked
 
@@ -260,7 +278,6 @@ public class ConsultaPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlConsultaPrestamoMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       
         jtPrestamo.setModel(colaborador.GetModelPrestamos(idClienteSeleccionado));
         jtPrestamo.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         jtPrestamo.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -322,6 +339,15 @@ public class ConsultaPrestamo extends javax.swing.JFrame {
     private void setDatosIniciales() {
         colaborador = new ConsultaPrestamoColaborador();
         pnlListaCliente.setVisible(false);
-        btnBorrarClienteSeleccionado.setVisible(false);
+        btnBorrarClienteSeleccionado.setVisible(false);        
+    }
+
+    void loadPage() {
+        Cliente cliente = colaborador.GetClienteById(idClienteSeleccionado);
+        txtCliente.setText(colaborador.getNombreCompleto(cliente)); 
+        jtPrestamo.setModel(colaborador.GetModelPrestamos(idClienteSeleccionado));
+        jtPrestamo.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        jtPrestamo.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jtPrestamo.getColumnModel().getColumn(0).setResizable(false);
     }
 }

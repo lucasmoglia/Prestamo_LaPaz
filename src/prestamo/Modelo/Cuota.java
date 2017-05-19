@@ -3,6 +3,7 @@ package prestamo.Modelo;
 
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 @Table(name="cuota"
     ,schema="prestamo"
 )
-public class Cuota  implements java.io.Serializable {
+public class Cuota  implements java.io.Serializable, Comparable<Cuota> {
 
 
      private int id;
@@ -134,5 +135,16 @@ public class Cuota  implements java.io.Serializable {
      */
     public void setTotalAmortizado(BigDecimal totalAmortizado) {
         this.totalAmortizado = totalAmortizado;
+    }
+
+    @Override
+    public int compareTo(Cuota c) {
+        if (numeroCuota < c.numeroCuota) {
+            return -1;
+        }
+        if (numeroCuota > c.numeroCuota) {
+            return 1;
+        }
+        return 0;        
     }
 }
