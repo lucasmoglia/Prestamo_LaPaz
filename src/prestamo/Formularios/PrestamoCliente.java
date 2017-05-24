@@ -7,13 +7,30 @@
 package prestamo.Formularios;
 
 import java.awt.Color;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
+import prestamo.DataSource.CuotaDataSource;
 import prestamo.Modelo.Cliente;
+import prestamo.Modelo.Cuota;
 import prestamo.Modelo.Prestamo;
 import prestamo.Modelo.Validadores.CalculoCuotaValidator;
 import prestamo.Modelo.Validadores.ObjectValidator;
@@ -261,7 +278,11 @@ public class PrestamoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalcularCuotasActionPerformed
 
     private void btnCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPrestamoActionPerformed
-        savePrestamo();
+        try {
+            savePrestamo();
+        } catch (JRException ex) {
+            Logger.getLogger(PrestamoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCrearPrestamoActionPerformed
 
     /**
@@ -338,7 +359,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("empty-statement")
-    private void savePrestamo() {
+    private void savePrestamo() throws JRException {
         Prestamo prestamo = getPrestamoFormulario();
         ObjectValidator prestamoValidator = new PrestamoValidator(prestamo);
         String message = "Por favor corrija los siguientes errores: \n";
@@ -347,6 +368,7 @@ public class PrestamoCliente extends javax.swing.JFrame {
                 lblMensaje.setText("Se Creo el préstamo con éxito");
                 lblMensaje.setForeground(new Color(0, 153, 51));
                 CleanForm();
+                RealizarReporte(prestamo);
             } else{
                 lblMensaje.setText("No se pudo crear el préstamo. Intentelo otra vez");
                 lblMensaje.setForeground(Color.red);  
@@ -396,5 +418,28 @@ public class PrestamoCliente extends javax.swing.JFrame {
         txtTasaInteres.setEditable(false);
         ddlClientes.setEnabled(false);
         ddlCuotas.setEnabled(false);
+    }
+
+    private void RealizarReporte(Prestamo prestamo) {
+       CuotaDataSource cuotaDS = new CuotaDataSource();
+       for(Cuota c : prestamo.getCuotas()){
+           cuotaDS.addCuota(c);
+       }
+       try{
+       //JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile("C:\\Users\\acarapi01\\Documents\\NetBeansProjects\\Prestamo\\src\\prestamo\\Formularios\\ReciboPrestamo.jrxml");
+       //JasperPrint jPrint = JasperFillManager.fillReport(reporte, null, cuotaDS);
+       
+        File sourceFile = new File("src/prestamo/Reportes/ReciboPrestamo.jasper");
+        JasperReport report = (JasperReport)JRLoader.loadObject(sourceFile);
+        Map<String, Object> parametros = new HashMap<>() ;
+        parametros.put("Cliente", colaborador.getFullName(prestamo.getCliente()));
+        parametros.put("Fecha", prestamo.FechaPrestamoString());
+        parametros.put("CuotasDS", cuotaDS);
+        JasperPrint jPrint = JasperFillManager.fillReport(report, parametros, cuotaDS);
+        JasperViewer view = new JasperViewer(jPrint);
+        view.setVisible(true);
+       }catch(JRException e){
+           String s = e.toString();
+       }
     }
 }
