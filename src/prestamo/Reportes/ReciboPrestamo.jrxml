@@ -1,29 +1,304 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e41ef243-c421-45a5-b15e-ddc218ba013a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="CuotasDataSet" uuid="84127651-eb2c-4dc7-a068-eeb5d2e0f299">
+		<field name="NumeroCuota" class="java.lang.Integer"/>
+		<field name="SaldoInicial" class="java.math.BigDecimal"/>
+		<field name="Monto" class="java.math.BigDecimal"/>
+		<field name="Amortizacion" class="java.math.BigDecimal"/>
+		<field name="InteresPeriodo" class="java.math.BigDecimal"/>
+		<field name="TotalAmortizado" class="java.math.BigDecimal"/>
+		<field name="FechaCuota" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="Cliente" class="java.lang.String"/>
+	<parameter name="Fecha" class="java.lang.String"/>
+	<parameter name="CuotasDS" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<queryString>
+		<![CDATA[select * from prestamo.prestamo where id = 5]]>
+	</queryString>
+	<field name="NumeroCuota" class="java.lang.Integer"/>
+	<field name="SaldoInicial" class="java.math.BigDecimal"/>
+	<field name="Monto" class="java.math.BigDecimal"/>
+	<field name="Amortizacion" class="java.math.BigDecimal"/>
+	<field name="InteresPeriodo" class="java.math.BigDecimal"/>
+	<field name="TotalAmortizado" class="java.math.BigDecimal"/>
+	<field name="FechaCuota" class="java.lang.String"/>
+	<variable name="MontoTotal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="13" width="338" height="45" uuid="59624252-ca58-4aa2-929b-b352b59e332f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalle Prestamo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="82" y="15" width="100" height="20" uuid="8ee33636-a046-41eb-b7c0-ceb63a6edc86"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="82" height="20" uuid="3e403694-2469-4871-b88f-3c3b8131f0f7"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="15" width="100" height="20" uuid="c508f12e-1510-4baf-98d2-d5f078dc3f35"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="15" width="100" height="20" uuid="933ff874-0160-4e71-a121-6b6e78e0044f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="0" y="0" width="555" height="125" uuid="aa2ede9a-e55a-4cc9-9287-ca2625f66d8f"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="CuotasDataSet" uuid="6af410ce-8f64-42d1-8956-4bdba4d9dcbc">
+						<dataSourceExpression><![CDATA[$P{CuotasDS}]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="61" uuid="8e414ad8-0039-491d-aca6-ccea9913a80e">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="61" height="30" uuid="49386952-2eb3-4172-af8e-d705f7332929"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<text><![CDATA[Nro. Cuota]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="61" height="20" uuid="e389b055-6f6c-40dd-969e-d526ccc27d5a"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NumeroCuota}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="c991a946-95b0-4d77-b9ea-5fd973c5dc97">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="74" height="30" uuid="bc3bab50-5d37-416e-9af2-6420571b5314"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Saldo inicial]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="74" height="20" uuid="a3fa5c69-5831-43d1-9682-dfcbf7cf5675"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SaldoInicial}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="9543f55e-3cd7-4eca-a1ea-a25272069c9a">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="75" height="30" uuid="43db2114-5696-4bb5-8bdc-238596de920e"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="75" height="20" uuid="23fd9117-95a4-4939-b184-64c31fdc7147"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="72c011e5-2372-4bc2-9855-1083058434bf">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="90" height="30" uuid="0006f7d9-5a9e-404b-b7fd-351f68d96290"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Amortización]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="90" height="20" uuid="41792ebd-35fc-4360-80d0-8d36baa5ab46"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Amortizacion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0b8fa0fc-44e6-4938-90d3-d1ccb0b3f5cb">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="90" height="30" uuid="07e43471-4323-424f-88cf-0bbab76c3e79"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+								</textElement>
+								<text><![CDATA[Interes Periodo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="90" height="20" uuid="8f5c8216-26b8-4991-97c6-617bc46e5f41"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{InteresPeriodo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="095fcec4-c094-43a7-a55a-75029c4d84b2">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="90" height="30" uuid="81a21cd3-78e6-40b5-b2df-d963c2b9d592"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Amortizado]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="90" height="20" uuid="2e48024c-cac5-47c6-9425-90ad4a86483f"/>
+								<textElement>
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TotalAmortizado}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="91" uuid="3690acdf-21a1-4229-9c72-58f4900b06c5">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 1" x="0" y="0" width="90" height="30" uuid="99749cb3-bce9-45fa-963d-126add378aad"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Fecha Pago]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 2_CH" height="30" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement style="table 1" x="0" y="0" width="90" height="20" uuid="5ad7df51-29e2-4907-a2b6-ddc0891c7f07"/>
+								<textElement textAlignment="Center">
+									<font fontName="Calibri" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FechaCuota}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
 </jasperReport>

@@ -10,21 +10,18 @@ import java.awt.Color;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import prestamo.Colaboradores.PrestamoClienteColaborador;
@@ -422,13 +419,13 @@ public class PrestamoCliente extends javax.swing.JFrame {
 
     private void RealizarReporte(Prestamo prestamo) {
        CuotaDataSource cuotaDS = new CuotaDataSource();
+       
        for(Cuota c : prestamo.getCuotas()){
            cuotaDS.addCuota(c);
        }
+       cuotaDS.addCuota(CreateCuotaEnBlanco());
+       cuotaDS.OrdenarArray();
        try{
-       //JasperReport reporte = (JasperReport)JRLoader.loadObjectFromFile("C:\\Users\\acarapi01\\Documents\\NetBeansProjects\\Prestamo\\src\\prestamo\\Formularios\\ReciboPrestamo.jrxml");
-       //JasperPrint jPrint = JasperFillManager.fillReport(reporte, null, cuotaDS);
-       
         File sourceFile = new File("src/prestamo/Reportes/ReciboPrestamo.jasper");
         JasperReport report = (JasperReport)JRLoader.loadObject(sourceFile);
         Map<String, Object> parametros = new HashMap<>() ;
@@ -441,5 +438,18 @@ public class PrestamoCliente extends javax.swing.JFrame {
        }catch(JRException e){
            String s = e.toString();
        }
+    }
+
+    private Cuota CreateCuotaEnBlanco() {
+        Cuota cuota = new Cuota();
+        cuota.setNumeroCuota(0);
+        cuota.setSaldoInicial(BigDecimal.ZERO);
+        cuota.setMonto(BigDecimal.ZERO);
+        cuota.setAmortizacion(BigDecimal.ZERO);
+        cuota.setInteresPeriodo(BigDecimal.ZERO);
+        cuota.setTotalAmortizado(BigDecimal.ZERO);
+        cuota.setFechaCuota(new Date());
+        
+        return cuota;
     }
 }

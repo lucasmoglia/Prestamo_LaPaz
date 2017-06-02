@@ -6,6 +6,7 @@
 package prestamo.DataSource;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -18,7 +19,7 @@ import prestamo.Modelo.Cuota;
  */
 public class CuotaDataSource implements JRDataSource{
     
-    private List<Cuota> cuotas = new ArrayList();
+    private final List<Cuota> cuotas = new ArrayList();
     private int indiceCuotaActual = -1;    
 
     @Override
@@ -52,5 +53,9 @@ public class CuotaDataSource implements JRDataSource{
     public void addCuota(Cuota cuota)
     {
         this.cuotas.add(cuota);
+    }
+    
+    public void OrdenarArray(){
+        Collections.sort(cuotas);
     }
 }
