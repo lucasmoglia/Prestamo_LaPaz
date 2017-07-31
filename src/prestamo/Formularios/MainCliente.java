@@ -40,6 +40,7 @@ public class MainCliente extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnNuevoCliente = new javax.swing.JButton();
@@ -51,6 +52,7 @@ public class MainCliente extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        JMIPrestamoSimple = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMIConsultaPrestamo = new javax.swing.JMenuItem();
 
@@ -59,6 +61,8 @@ public class MainCliente extends javax.swing.JFrame {
 
         jMenu3.setText("Edit");
         jMenuBar2.add(jMenu3);
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(897, 558));
@@ -148,6 +152,14 @@ public class MainCliente extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        JMIPrestamoSimple.setText("Nuevo Préstamo Simple");
+        JMIPrestamoSimple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIPrestamoSimpleActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JMIPrestamoSimple);
 
         jMenuBar1.add(jMenu1);
 
@@ -263,6 +275,13 @@ public class MainCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void JMIPrestamoSimpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPrestamoSimpleActionPerformed
+        // TODO add your handling code here:
+        PrestamoSimpleCliente prestamoSimpleCliente = new PrestamoSimpleCliente();
+        addElement(prestamoSimpleCliente.pnlPrestamoCliente);   
+        jPanel2.setVisible(false);
+    }//GEN-LAST:event_JMIPrestamoSimpleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +319,7 @@ public class MainCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JMIPrestamoSimple;
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnNuevoCliente;
     private javax.swing.JButton btnSeleccionarPrestamo;
@@ -314,6 +334,7 @@ public class MainCliente extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     public static javax.swing.JPanel jPanel1;
     public static javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
