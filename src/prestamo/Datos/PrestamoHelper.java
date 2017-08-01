@@ -5,7 +5,6 @@
  */
 
 package prestamo.Datos;
-import java.util.List;
 import java.util.Set;
 import prestamo.Modelo.Cliente;
 import prestamo.Modelo.Cuota;

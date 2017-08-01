@@ -678,9 +678,14 @@ public class NuevoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void btnGuardarGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarGaranteActionPerformed
-        SaveGarante();
-        btnGarante.setText("Modificar Garante");
-        jdGarante.setVisible(false);
+        try{
+            SaveGarante();
+            btnGarante.setText("Modificar Garante");
+            jdGarante.setVisible(false);
+        }catch(Exception e){
+            btnGarante.setText("Modificar Garante");
+            jdGarante.setVisible(false);
+        }
     }//GEN-LAST:event_btnGuardarGaranteActionPerformed
 
     private void txtNombreGaranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreGaranteActionPerformed
@@ -885,6 +890,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         garante = new Garante();
         garante.setNombre(txtNombreGarante.getText());
         garante.setApellido(txtApellidoGarante.getText());
+                
         Direccion dirGarante = new Direccion();
         dirGarante.setCalle(txtDomicilioGarante.getText());
         dirGarante.setNumero(Integer.parseInt(txtNumeroGarante.getText()));
@@ -899,10 +905,12 @@ public class NuevoCliente extends javax.swing.JFrame {
             txtNombreGarante.setText(garante.getNombre());
             txtApellidoGarante.setText(garante.getApellido());
             Direccion direccion = garante.getDireccion();
-            txtDomicilioGarante.setText(direccion.getCalle());
-            txtNumeroGarante.setText(direccion.getNumero()!= 0 ? direccion.getNumero().toString() : "");
-            txtPisoGarante.setText(direccion.getPiso());
-            txtDepartamentoGarante.setText(direccion.getDepartamento());
+            if(direccion != null){
+                txtDomicilioGarante.setText(direccion.getCalle());
+                txtNumeroGarante.setText(direccion.getNumero()!= 0 ? direccion.getNumero().toString() : "");
+                txtPisoGarante.setText(direccion.getPiso());
+                txtDepartamentoGarante.setText(direccion.getDepartamento());
+            }
         }
     }
 

@@ -8,8 +8,6 @@ package prestamo.Datos;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.transform.Source;
-import org.hibernate.HibernateException;
 import prestamo.Modelo.TipoDocumento;
 
 /**
